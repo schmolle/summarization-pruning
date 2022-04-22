@@ -20,4 +20,4 @@ try:
 	logging.info("min_length %s" % (min_length,))
 	logging.info("max_length %s" % (max_length,))
 except Exception as e:
-	logger.error(e)
+	logging.error(e)
