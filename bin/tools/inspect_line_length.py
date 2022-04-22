@@ -1,7 +1,7 @@
 import gzip
 import logging
 
-logging.basicConfig(filename='inspect.log', encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(filename='inspect.log')
 try:
 	counter = 3213835
 	max_length = 0
