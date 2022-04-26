@@ -3,11 +3,11 @@ from transformers import pipeline
 
 with gzip.open('/data/ms-marco/fulldocs.tsv.gz','rt') as f:
 	l1 = f.readline()
-	print(l1.length())
+	print(len(l1))
 	l1 = l1[0:1024]
 	
 	l2 = f.readline()
-	print(l2.length())
+	print(len(l2))
 	l2 = l2[0:1024]
 
 	summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
