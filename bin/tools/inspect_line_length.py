@@ -1,7 +1,12 @@
 import gzip
 import logging
+from datetime import datetime
 
 logging.basicConfig(filename='inspect.log', level=logging.DEBUG)
+
+now = datetime.now()
+current_time = now.strftime("%H:%M:%S")
+logging.info("started run at: ", current_time)
 try:
 	logg
 	counter = 3213835
@@ -20,5 +25,9 @@ try:
 	logging.info("longer1024 %s" % (longer1024,))
 	logging.info("min_length %s" % (min_length,))
 	logging.info("max_length %s" % (max_length,))
+
+	now = datetime.now()
+	current_time = now.strftime("%H:%M:%S")
+	logging.info("finished run at: ", current_time)
 except Exception as e:
 	logging.error(e)
