@@ -17,16 +17,17 @@ def doPegasus(txt):
 	return tgt_text
 
 def doBart(txt):
-	text = text[0:1024]
+	txt = txt[0:1024]
 	summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+	return summarizer(l1, max_length=130, min_length=30, do_sample=False)
 
 with gzip.open('/data/ms-marco/fulldocs.tsv.gz','rt') as f:
 	l1 = f.readline()
-	print("L1 length" % (len(l1),))
+	print("L1 length: %s\n" % (len(l1),))
 	l1 = doBart(l1)
 	print(l1)
 
 	l2 = f.readline()
-	print("L2 length" % (len(l2),))
+	print("L2 length: %s\n" % (len(l2),))
 	l2 = doPegasus(l2)
 	print(l2)
