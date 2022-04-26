@@ -8,7 +8,7 @@ now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 logging.info("started run at: %s\n" % (current_time,))
 try:
-	counter = 3213835
+	counter = 0
 	max_length = 0
 	min_length = 0
 	longer1024 = 0
@@ -19,6 +19,7 @@ try:
 			if length < min_length: min_length = length
 			if length > max_length: max_length = length
 			if length > 1024: longer1024 = longer1024 + 1
+			counter = counter + 1
 
 	logging.info("TOTAL LINES %s" % (counter,))
 	logging.info("longer1024 %s" % (longer1024,))
