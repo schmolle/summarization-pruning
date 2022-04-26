@@ -8,7 +8,6 @@ now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 logging.info("started run at: %s\n" % (current_time,))
 try:
-	logg
 	counter = 3213835
 	max_length = 0
 	min_length = 0
