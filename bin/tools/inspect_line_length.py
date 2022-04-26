@@ -6,7 +6,7 @@ logging.basicConfig(filename='inspect.log', level=logging.DEBUG)
 
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
-logging.info("started run at: ", current_time)
+logging.info("started run at: %s\n" % (current_time,))
 try:
 	logg
 	counter = 3213835
@@ -28,6 +28,6 @@ try:
 
 	now = datetime.now()
 	current_time = now.strftime("%H:%M:%S")
-	logging.info("finished run at: ", current_time)
+	logging.info("started run at: %s\n" % (current_time,))
 except Exception as e:
 	logging.error(e)
