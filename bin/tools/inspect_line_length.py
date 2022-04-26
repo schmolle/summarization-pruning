@@ -20,7 +20,7 @@ try:
 			if length < min_length: min_length = length
 			if length > max_length: max_length = length
 			if length > 1024: longer1024 = longer1024 + 1
-			if length > 4096: longer1024 = longer4096 + 1
+			if length > 4096: longer4096 = longer4096 + 1
 			counter = counter + 1
 
 	logging.info("TOTAL LINES %s" % (counter,))
