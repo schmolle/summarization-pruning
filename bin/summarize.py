@@ -16,18 +16,17 @@ def doPegasus(txt):
 	tgt_text = tokenizer.batch_decode(translated, skip_special_tokens=True)
 	return tgt_text
 
+def doBart(txt):
+	text = text[0:1024]
+	summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
 with gzip.open('/data/ms-marco/fulldocs.tsv.gz','rt') as f:
 	l1 = f.readline()
-	print(len(l1))
-	l1 = l1[0:1024]
-	
-	l2 = f.readline()
-	print(len(l2))
-	summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-	
+	print("L1 length" % (len(l1),))
+	l1 = doBart(l1)
 	print(l1)
-	print(summarizer(l1, max_length=130, min_length=30, do_sample=False))
 
+	l2 = f.readline()
+	print("L2 length" % (len(l2),))
 	l2 = doPegasus(l2)
 	print(l2)
