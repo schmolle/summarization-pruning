@@ -2,7 +2,7 @@ import gzip
 import logging
 from datetime import datetime
 
-logging.basicConfig(filename='inspect.log', level=logging.DEBUG)
+logging.basicConfig(filename='data.log', level=logging.DEBUG)
 
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
