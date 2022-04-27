@@ -1,6 +1,7 @@
 import gzip
 import logging
 from datetime import datetime
+from transformers import PegasusTokenizerFast
 
 logging.basicConfig(filename='data.log', level=logging.DEBUG)
 
@@ -13,10 +14,12 @@ try:
 	min_length = 0
 	longer1024 = 0
 	longer4096 = 0
+	t = PegasusTokenizerFast.from_pretrained("google/pegasus-xsum")
+	logging.info("I know {} tokens".format(len(t)))
 
 	with gzip.open('/data/ms-marco/fulldocs.tsv.gz','rt') as f:
 		for line in f:
-			length = len(line)
+			length = len(t.tokenize(line)) 
 			if length < min_length: min_length = length
 			if length > max_length: max_length = length
 			if length > 1024: longer1024 = longer1024 + 1
