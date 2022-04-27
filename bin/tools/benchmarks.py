@@ -4,7 +4,7 @@ from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 import torch
 import timeit
 
-def doPegasus(txt, model, tokenizer):
+def doPegasus(txt):
 	src_text = txt
 	model_name = "google/pegasus-xsum"
 	device = "cpu"
