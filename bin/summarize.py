@@ -24,10 +24,12 @@ def doBart(txt):
 with gzip.open('/data/ms-marco/fulldocs.tsv.gz','rt') as f:
 	l1 = f.readline()
 	print("L1 length: %s\n" % (len(l1),))
+	print(l1)
 	l1 = doBart(l1)
 	print(l1)
 
 	l2 = f.readline()
+	print(l2)
 	print("L2 length: %s\n" % (len(l2),))
 	l2 = doPegasus(l2)
 	print(l2)
