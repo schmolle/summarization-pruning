@@ -19,4 +19,5 @@ if __name__ == '__main__':
 	device = "cpu"
 	tokenizer = PegasusTokenizer.from_pretrained(model_name)
 	model = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
-	print(timeit.timeit("doPegasus(txt, model, tokenizer)", globals=locals(), number=1))
+	# print(timeit.timeit("doPegasus(txt, model, tokenizer)", globals=locals(), number=1))
+	print(doPegasus(txt, model, tokenizer))
