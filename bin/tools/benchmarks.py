@@ -9,7 +9,7 @@ from transformers import pipeline
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 
 #Longformer imports
-from transformers import Longformer, LongformerConfig
+from transformers import LongformerModel, LongformerConfig
 from transformers.sliding_chunks import pad_to_window_size
 from transformers import RobertaTokenizer
 
@@ -31,7 +31,7 @@ config = LongformerConfig.from_pretrained('longformer-base-4096/')
 # 'sliding_chunks': a PyTorch implementation of our sliding window attention
 config.attention_mode = 'sliding_chunks'
 
-model_long = Longformer.from_pretrained('longformer-base-4096/', config=config)
+model_long = LongformerModel.from_pretrained('longformer-base-4096/', config=config)
 tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
 tokenizer_long.model_max_length = model_long.config.max_position_embeddings
 
