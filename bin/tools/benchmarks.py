@@ -39,6 +39,7 @@ if longformer_activate:
 	tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
 	tokenizer_long.model_max_length = model_long.config.max_position_embeddings
 
+#init bigbird
 if bigbird_active:
 	tokenizer_bird = AutoTokenizer.from_pretrained("google/bigbird-pegasus-large-arxiv")
 	model_bird = BigBirdPegasusForConditionalGeneration.from_pretrained("google/bigbird-pegasus-large-arxiv")
@@ -47,6 +48,7 @@ def doBigBird(txt):
 	inputs = tokenizer_bird(txt, return_tensors='pt')
 	prediction = model_bird.generate(**inputs)
 	prediction = tokenizer_bird.batch_decode(prediction)
+	return prediction
 
 def doLongformer(txt):
 	input_ids = torch.tensor(tokenizer_long.encode(txt)).unsqueeze(0)  # batch of size 1
