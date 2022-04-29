@@ -22,7 +22,7 @@ logging.basicConfig(filename='times.log', level=logging.DEBUG)
 
 pegasus_activate = True
 bart_activate = True
-longformer_activate = True
+longformer_activate = False
 bigbird_active = True
 
 command_list = []
@@ -42,7 +42,7 @@ if bart_activate:
 
 #init Longformer
 if longformer_activate:
-	model_long = LongformerModel.from_pretrained('longformer-base-4096/')
+	model_long = LongformerModel.from_pretrained('longformer-base-4096')
 	tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
 	tokenizer_long.model_max_length = model_long.config.max_position_embeddings
 	command_list.append("doLongformer(txt)")
