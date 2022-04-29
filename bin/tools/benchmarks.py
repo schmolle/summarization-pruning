@@ -9,8 +9,8 @@ from transformers import pipeline
 from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 
 #Longformer imports
-from longformer.longformer import Longformer, LongformerConfig
-from longformer.sliding_chunks import pad_to_window_size
+from transformers import Longformer, LongformerConfig
+from transformers.sliding_chunks import pad_to_window_size
 from transformers import RobertaTokenizer
 
 
