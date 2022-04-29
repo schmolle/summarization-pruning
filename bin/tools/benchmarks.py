@@ -1,18 +1,67 @@
 import gzip
-from transformers import pipeline
-from transformers import PegasusForConditionalGeneration, PegasusTokenizer
 import torch
 import timeit
 
+#Bart imports
+from transformers import pipeline
+
+#Pegasus imports
+from transformers import PegasusForConditionalGeneration, PegasusTokenizer
+
+#Longformer imports
+from longformer.longformer import Longformer, LongformerConfig
+from longformer.sliding_chunks import pad_to_window_size
+from transformers import RobertaTokenizer
+
+
+#init Pegasus
+model_name = "google/pegasus-xsum"
+device = "cpu"
+tokenizerP = PegasusTokenizer.from_pretrained(model_name)
+modelP = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
+
+#init Bart
+bart = pipeline("summarization", model="facebook/bart-large-cnn")
+
+#init Longformer
+config = LongformerConfig.from_pretrained('longformer-base-4096/') 
+# choose the attention mode 'n2', 'tvm' or 'sliding_chunks'
+# 'n2': for regular n2 attantion
+# 'tvm': a custom CUDA kernel implementation of our sliding window attention
+# 'sliding_chunks': a PyTorch implementation of our sliding window attention
+config.attention_mode = 'sliding_chunks'
+
+model_long = Longformer.from_pretrained('longformer-base-4096/', config=config)
+tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
+tokenizer_long.model_max_length = model_long.config.max_position_embeddings
+
+def doLongformer(txt):
+	input_ids = torch.tensor(tokenizer_long.encode(txt)).unsqueeze(0)  # batch of size 1
+
+	# TVM code doesn't work on CPU. Uncomment this if `config.attention_mode = 'tvm'`
+	# model = model.cuda(); input_ids = input_ids.cuda()
+
+	# Attention mask values -- 0: no attention, 1: local attention, 2: global attention
+	attention_mask = torch.ones(input_ids.shape, dtype=torch.long, device=input_ids.device) # initialize to local attention
+	attention_mask[:, [1, 4, 21,]] =  2  # Set global attention based on the task. For example,
+										# classification: the <s> token
+										# QA: question tokens
+
+	# padding seqlen to the nearest multiple of 512. Needed for the 'sliding_chunks' attention
+	input_ids, attention_mask = pad_to_window_size(
+			input_ids, attention_mask, config.attention_window[0], tokenizer_long.pad_token_id)
+
+	output = model_long(input_ids, attention_mask=attention_mask)[0]
+	return output
+
+def doBart(txt):	
+	return bart(txt, max_length=130, min_length=30, do_sample=False)
+
 def doPegasus(txt):
 	src_text = txt
-	model_name = "google/pegasus-xsum"
-	device = "cpu"
-	tokenizer = PegasusTokenizer.from_pretrained(model_name)
-	model = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
-	batch = tokenizer(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
-	translated = model.generate(**batch)
-	tgt_text = tokenizer.batch_decode(translated, skip_special_tokens=True)
+	batch = tokenizerP(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
+	translated = modelP.generate(**batch)
+	tgt_text = tokenizerP.batch_decode(translated, skip_special_tokens=True)
 	return tgt_text
 
 if __name__ == '__main__':
@@ -20,4 +69,4 @@ if __name__ == '__main__':
 	# init pegasus
 	
 	# print(timeit.timeit("doPegasus(txt, model, tokenizer)", globals=locals(), number=1))
-	print(doPegasus(txt))
+	print(doLongformer(txt))
