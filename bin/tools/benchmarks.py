@@ -77,7 +77,7 @@ def doLongformer(txt):
 def doBart(txt):	
 	return bart(txt, max_length=130, min_length=30, do_sample=False)
 
-def doPegasus(txt):<
+def doPegasus(txt):
 	src_text = txt
 	batch = tokenizerP(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
 	translated = modelP.generate(**batch)
