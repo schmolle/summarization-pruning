@@ -13,20 +13,40 @@ from transformers import LongformerModel
 # from transformers.sliding_chunks import pad_to_window_size
 from transformers import RobertaTokenizer
 
+#bigbird imports
+from transformers import BigBirdPegasusForConditionalGeneration, AutoTokenizer
+
+
+pegasus_activate = False
+bart_activate = False
+longformer_activate = False
+bigbird_active = True
 
 #init Pegasus
-model_name = "google/pegasus-xsum"
-device = "cpu"
-tokenizerP = PegasusTokenizer.from_pretrained(model_name)
-modelP = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
+if pegasus_activate:
+	model_name = "google/pegasus-xsum"
+	device = "cpu"
+	tokenizerP = PegasusTokenizer.from_pretrained(model_name)
+	modelP = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
 
 #init Bart
-bart = pipeline("summarization", model="facebook/bart-large-cnn")
+if bart_activate:
+	bart = pipeline("summarization", model="facebook/bart-large-cnn")
 
 #init Longformer
-model_long = LongformerModel.from_pretrained('longformer-base-4096/')
-tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
-tokenizer_long.model_max_length = model_long.config.max_position_embeddings
+if longformer_activate:
+	model_long = LongformerModel.from_pretrained('longformer-base-4096/')
+	tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
+	tokenizer_long.model_max_length = model_long.config.max_position_embeddings
+
+if bigbird_active:
+	tokenizer_bird = AutoTokenizer.from_pretrained("google/bigbird-pegasus-large-arxiv")
+	model_bird = BigBirdPegasusForConditionalGeneration.from_pretrained("google/bigbird-pegasus-large-arxiv")
+
+def doBigBird(txt):
+	inputs = tokenizer_bird(txt, return_tensors='pt')
+	prediction = model_bird.generate(**inputs)
+	prediction = tokenizer_bird.batch_decode(prediction)
 
 def doLongformer(txt):
 	input_ids = torch.tensor(tokenizer_long.encode(txt)).unsqueeze(0)  # batch of size 1
@@ -58,4 +78,4 @@ if __name__ == '__main__':
 	# init pegasus
 	
 	# print(timeit.timeit("doPegasus(txt, model, tokenizer)", globals=locals(), number=1))
-	print(doLongformer(txt))
+	print(doBigBird(txt))
