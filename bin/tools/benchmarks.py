@@ -18,7 +18,7 @@ from transformers import RobertaTokenizer
 from transformers import BigBirdPegasusForConditionalGeneration, AutoTokenizer
 
 
-logging.basicConfig(format='%(asctime)s %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', filename='times.log', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s %(message)s', filename='times.log', level=logging.DEBUG)
 
 pegasus_activate = True
 bart_activate = True
@@ -77,7 +77,7 @@ def doLongformer(txt):
 def doBart(txt):	
 	return bart(txt, max_length=130, min_length=30, do_sample=False)
 
-def doPegasus(txt):
+def doPegasus(txt):<
 	src_text = txt
 	batch = tokenizerP(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
 	translated = modelP.generate(**batch)
@@ -89,6 +89,9 @@ if __name__ == '__main__':
 	# init pegasus
 	logging.info(command_list)
 	for command in command_list:
-		time = timeit.timeit(command, globals=locals(), number=runs)
+		try:
+			time = timeit.timeit(command, globals=locals(), number=runs)
+		except Exception as e:
+			logging.warning("Error: %s" % (e,))
 		logging.info("%s called %d times took %ss per run, %ss in total" % (command, runs, time/runs, time))
 	# print(doBigBird(txt))
