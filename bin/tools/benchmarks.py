@@ -24,14 +24,7 @@ modelP = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
 bart = pipeline("summarization", model="facebook/bart-large-cnn")
 
 #init Longformer
-config = LongformerConfig.from_pretrained('longformer-base-4096/') 
-# choose the attention mode 'n2', 'tvm' or 'sliding_chunks'
-# 'n2': for regular n2 attantion
-# 'tvm': a custom CUDA kernel implementation of our sliding window attention
-# 'sliding_chunks': a PyTorch implementation of our sliding window attention
-config.attention_mode = 'sliding_chunks'
-
-model_long = LongformerModel.from_pretrained('longformer-base-4096/', config=config)
+model_long = LongformerModel.from_pretrained('longformer-base-4096/')
 tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
 tokenizer_long.model_max_length = model_long.config.max_position_embeddings
 
@@ -46,10 +39,6 @@ def doLongformer(txt):
 	attention_mask[:, [1, 4, 21,]] =  2  # Set global attention based on the task. For example,
 										# classification: the <s> token
 										# QA: question tokens
-
-	# padding seqlen to the nearest multiple of 512. Needed for the 'sliding_chunks' attention
-	input_ids, attention_mask = pad_to_window_size(
-			input_ids, attention_mask, config.attention_window[0], tokenizer_long.pad_token_id)
 
 	output = model_long(input_ids, attention_mask=attention_mask)[0]
 	return output
