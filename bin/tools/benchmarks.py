@@ -18,7 +18,7 @@ from transformers import RobertaTokenizer
 from transformers import BigBirdPegasusForConditionalGeneration, AutoTokenizer
 
 
-logging.basicConfig(format='%(asctime)s %(message)s', filename='times.log', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s %(message)s', filename='logs/times.log', level=logging.DEBUG)
 
 pegasus_activate = True
 bart_activate = True
