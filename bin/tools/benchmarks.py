@@ -90,8 +90,10 @@ if __name__ == '__main__':
 	logging.info(command_list)
 	for command in command_list:
 		try:
+			logging.info("calling command %s" % (command,))
 			time = timeit.timeit(command, globals=locals(), number=runs)
+			logging.info("%s called %d times took %ss per run, %ss in total" % (command, runs, time/runs, time))
 		except Exception as e:
-			logging.warning("Error: %s" % (e,))
-		logging.info("%s called %d times took %ss per run, %ss in total" % (command, runs, time/runs, time))
+			logging.warning("Error: %s in command %s" % (e,command))
+		
 	# print(doBigBird(txt))
