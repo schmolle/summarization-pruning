@@ -11,7 +11,7 @@ import Pegasus_Impl
 import Bigbird_Impl
 
 
-logging.basicConfig(format='%(asctime)s %(message)s', filename='~/logs/tools/times.log', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s %(message)s', filename='/home/jschmolzi/logs/tools/times.log', level=logging.DEBUG)
 
 pegasus_activate = False
 bart_activate = True
