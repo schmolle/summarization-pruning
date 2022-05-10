@@ -25,12 +25,12 @@ runs = 20
 #init Pegasus
 if pegasus_activate:
 	pegasus = Pegasus_Impl.Pegasus()
-	command_list.append("pegasus.doPegasus(txt)")
+	command_list.append("pegasus.summarize(txt)")
 
 #init Bart
 if bart_activate:
 	bart = Bart_Impl.Bart()
-	command_list.append("bart.doBart(txt)")
+	command_list.append("bart.summarize(txt)")
 
 #init Longformer
 #if longformer_activate:
@@ -41,8 +41,8 @@ if bart_activate:
 
 #init bigbird
 if bigbird_active:
-	bigbird = Bigbird_Impl.Bigbird()
-	command_list.append("bigbird.doBigBird(txt)")
+	bigbird = Bigbird_Impl.BigBird()
+	command_list.append("bigbird.summarize(txt)")
 
 
 if __name__ == '__main__':
