@@ -3,12 +3,12 @@ import logging
 from datetime import datetime
 from transformers import PegasusTokenizerFast
 
-logging.basicConfig(filename='logs/data.log', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s %(message)s', filename='~/logs/tools/data.log', level=logging.DEBUG)
 
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 logging.info("############################################################################")
-logging.info("started run at: %s\n" % (current_time,))
+logging.info("started run")
 try:
 	counter = 0
 	max_length = 0
@@ -36,8 +36,6 @@ try:
 	logging.info("min_length %s" % (min_length,))
 	logging.info("max_length %s" % (max_length,))
 
-	now = datetime.now()
-	current_time = now.strftime("%H:%M:%S")
-	logging.info("started run at: %s\n" % (current_time,))
+	logging.info("ended run")
 except Exception as e:
 	logging.error(e)
