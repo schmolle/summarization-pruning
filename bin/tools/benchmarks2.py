@@ -3,10 +3,10 @@ import torch
 import timeit
 import logging
 
-import Bart_Impl
-import Longformer_Impl
-import Pegasus_Impl
-import Bigbird_Impl
+import ../Bart_Impl
+import ../Longformer_Impl
+import ../Pegasus_Impl
+import ../Bigbird_Impl
 
 
 logging.basicConfig(format='%(asctime)s %(message)s', filename='~/logs/tools/times.log', level=logging.DEBUG)
