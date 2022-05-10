@@ -3,6 +3,8 @@ import torch
 import timeit
 import logging
 
+import sys
+sys.path.append("..")
 import Bart_Impl
 import Longformer_Impl
 import Pegasus_Impl
