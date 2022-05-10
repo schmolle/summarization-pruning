@@ -3,7 +3,7 @@ import torch
 import timeit
 import logging
 
-import Bart_Impl
+from Bart_Impl import Bart
 import Longformer_Impl
 import Pegasus_Impl
 import Bigbird_Impl
@@ -30,7 +30,8 @@ if bart_activate:
 
 #init Longformer
 #if longformer_activate:
-#	model_long = LongformerModel.from_pretrained('longformer-base-4096')
+#	model_long = LongformerModel.from_pre
+# trained('longformer-base-4096')
 #	tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
 #	tokenizer_long.model_max_length = model_long.config.max_position_embeddings
 #	command_list.append("doLongformer(txt)")
