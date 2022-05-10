@@ -3,7 +3,7 @@ import torch
 import timeit
 import logging
 
-from Bart_Impl import Bart
+from BartImpl import Bart
 import Longformer_Impl
 import Pegasus_Impl
 import Bigbird_Impl
