@@ -1,1 +1,4 @@
 /.project
+/.pydevproject
+bin/__pycache__
+/logs
