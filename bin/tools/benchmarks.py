@@ -22,9 +22,9 @@ logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=lo
 
 
 pegasus_activate = True
-bart_activate = False
+bart_activate = True
 longformer_activate = False
-bigbird_active = False
+bigbird_active = True
 
 command_list = []
 runs = 20
