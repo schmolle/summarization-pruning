@@ -28,6 +28,8 @@ bigbird_active = True
 
 command_list = []
 runs = 20
+
+
 #init Pegasus
 if pegasus_activate:
 	pegasus = Pegasus_Impl.Pegasus()
@@ -42,17 +44,12 @@ if bart_activate:
 if longformer_activate:
 	longformer = Longformer_Impl.Longformer()
 	command_list.append("longformer.summarize(txt)")
-#init Longformer
-#if longformer_activate:
-#	model_long = LongformerModel.from_pretrained('longformer-base-4096')
-#	tokenizer_long = RobertaTokenizer.from_pretrained('roberta-base')
-#	tokenizer_long.model_max_length = model_long.config.max_position_embeddings
-#	command_list.append("doLongformer(txt)")
 
 #init bigbird
 if bigbird_active:
 	bigbird = Bigbird_Impl.BigBird()
 	command_list.append("bigbird.summarize(txt)")
+
 
 
 if __name__ == '__main__':
