@@ -16,7 +16,7 @@ try:
 		for line in f:
 			length = len(line) 
 			if length < 20:
-				logger.info("Line %d with length %d found" % (counter, length))
+				logging.info("Line %d with length %d found" % (counter, length))
 			counter = counter + 1
 
 	logging.info("ended run")
