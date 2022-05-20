@@ -23,7 +23,7 @@ logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=lo
 
 pegasus_activate = True
 bart_activate = True
-longformer_activate = False
+longformer_activate = True
 bigbird_active = True
 
 command_list = []
@@ -38,6 +38,10 @@ if bart_activate:
 	bart = Bart_Impl.Bart()
 	command_list.append("bart.summarize(txt)")
 
+#init Longformer
+if longformer_activate:
+	longformer = Longformer_Impl.Longformer()
+	command_list.append("longformer.summarize(txt)")
 #init Longformer
 #if longformer_activate:
 #	model_long = LongformerModel.from_pretrained('longformer-base-4096')
