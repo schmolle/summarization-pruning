@@ -15,7 +15,7 @@ try:
 	with gzip.open('/home/jschmolzi/collections/msmarco-doc/msmarco-docs.trec.gz','rt') as f:
 		for line in f:
 			length = len(line) 
-			if lenght < 20:
+			if length < 20:
 				logger.info("Line %d with length %d found" % (counter, length))
 			counter = counter + 1
 
