@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 from transformers import PegasusTokenizerFast
 
-logging.basicConfig(format='%(asctime)s %(message)s', filename='~/logs/tools/data.log', level=logging.DEBUG)
+logging.basicConfig(format='%(asctime)s %(message)s', filename='/home/jschmolzi/logs/tools/data.log', level=logging.DEBUG)
 
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
