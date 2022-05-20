@@ -10,7 +10,7 @@ class Longformer():
 		
 	def summarize(self, txt):
 
-		input_ids = self._tokenizer(LONG_ARTICLE, return_tensors="pt").input_ids.to("cuda")
+		input_ids = self._tokenizer(txt, return_tensors="pt").input_ids.to("cuda")
 		global_attention_mask = torch.zeros_like(input_ids)
 		# set global_attention_mask on first token
 		global_attention_mask[:, 0] = 1
