@@ -12,7 +12,7 @@ logging.info("started run")
 try:
 	counter = 0
 
-	with gzip.open('~/collections/msmarco-doc/msmarco-docs.trec.gz','rt') as f:
+	with gzip.open('/home/jschmolzi/collections/msmarco-doc/msmarco-docs.trec.gz','rt') as f:
 		for line in f:
 			length = len(line) 
 			if lenght < 20:
