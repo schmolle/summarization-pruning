@@ -12,11 +12,11 @@ logging.info("started run")
 try:
 	counter = 0
 
-	with gzip.open('/data/ms-marco/fulldocs.tsv.gz','rt') as f:
+	with gzip.open('~/collections/msmarco-doc/msmarco-docs.trec.gz','rt') as f:
 		for line in f:
 			length = len(line) 
 			if lenght < 20:
-				logger.info("Line %s with length %s found" % (counter, length))
+				logger.info("Line %d with length %d found" % (counter, length))
 			counter = counter + 1
 
 	logging.info("ended run")
