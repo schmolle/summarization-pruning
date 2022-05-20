@@ -61,7 +61,7 @@ if __name__ == '__main__':
 		try:
 			logging.info("calling command %s" % (command,))
 			time = timeit.timeit(command, globals=locals(), number=runs)
-			logging.info("%s called %d times took %ss per run, %ss in total" % (command, format(runs, '.4f'), format(time/runs, '.4f'), time))
+			logging.info("%s called %d times took %ss per run, %ss in total" % (command, runs, format(time/runs, '.4f'), format(time, '.4f')))
 		except Exception as e:
 			logging.warning("Error: %s in command %s" % (e,command))
 		
