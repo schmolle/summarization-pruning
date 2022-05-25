@@ -21,10 +21,10 @@ else:
 logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
 
 
-pegasus_activate = True
+pegasus_activate = False
 bart_activate = True
-longformer_activate = True
-bigbird_active = True
+longformer_activate = False
+bigbird_active = False
 
 command_list = []
 runs = 20
@@ -39,6 +39,7 @@ if pegasus_activate:
 if bart_activate:
 	bart = Bart_Impl.Bart()
 	command_list.append("bart.summarize(txt)")
+	# command_list.append("bart.summarize2(txt)")
 
 #init Longformer
 if longformer_activate:
