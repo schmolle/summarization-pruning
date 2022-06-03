@@ -4,25 +4,16 @@ import timeit
 import logging
 import os
 
-#needed for imports
-import sys
-sys.path.append("..")
-
-import Bart_Impl
-import Longformer_Impl
-import Pegasus_Impl
-import Bigbird_Impl
-
 
 if os.name == 'nt':
-	logfile = "../../logs/times.log"
+	logfile = "../logs/times.log"
 else:
 	logfile = "/home/jschmolzi/logs/tools/times.log"
 logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
 
 
-pegasus_activate = False
-bart_activate = True
+pegasus_activate = True
+bart_activate = False
 longformer_activate = False
 bigbird_active = False
 
@@ -32,22 +23,33 @@ runs = 20
 
 #init Pegasus
 if pegasus_activate:
+	from summarize import Pegasus_Impl
+	from summarize import Pegasus_Impl_With_Pipeline
+	
 	pegasus = Pegasus_Impl.Pegasus()
+	pegasus_pipeline = Pegasus_Impl_With_Pipeline.PegasusWithPipeline()
 	command_list.append("pegasus.summarize(txt)")
+	command_list.append("pegasus_pipeline.summarize(txt)")
 
 #init Bart
 if bart_activate:
+	from summarize import Bart_Impl
+	
 	bart = Bart_Impl.Bart()
 	command_list.append("bart.summarize(txt)")
 	# command_list.append("bart.summarize2(txt)")
 
 #init Longformer
 if longformer_activate:
+	from summarize import Longformer_Impl
+	
 	longformer = Longformer_Impl.Longformer()
 	command_list.append("longformer.summarize(txt)")
 
 #init bigbird
 if bigbird_active:
+	from summarize import Bigbird_Impl
+	
 	bigbird = Bigbird_Impl.BigBird()
 	command_list.append("bigbird.summarize(txt)")
 
