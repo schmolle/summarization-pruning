@@ -11,5 +11,5 @@ class BigBird():
 	def summarize(self, txt):
 		inputs = self._tokenizer(txt, return_tensors='pt').to("cuda")
 		prediction = self._model.generate(**inputs)
-		prediction = self._tokenizer.batch_decode(prediction).to("cuda")
+		prediction = self._tokenizer.batch_decode(prediction)
 		return prediction
