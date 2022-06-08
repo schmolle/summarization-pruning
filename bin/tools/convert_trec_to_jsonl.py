@@ -22,5 +22,5 @@ def convert_trec_to_jsonl(path):
             if counter > 34:
                 break
             
-if __name__ == 'main':
+if __name__ == "__main__":
     convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz')
