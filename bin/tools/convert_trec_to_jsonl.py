@@ -5,7 +5,8 @@ from enum import Enum
 class Mode(Enum):
     UNDEF = 0
     TEXT = 1
-    ID = 2
+    DOCNO = 2
+    DOC = 3
     
     
 class TrecParser(HTMLParser):
@@ -15,20 +16,26 @@ class TrecParser(HTMLParser):
     
     def handle_starttag(self, tag, attrs):
         if tag == 'text':
-            print("starting text")
+            self.mode = Mode.TEXT
         elif tag == 'docno':
-            print("starting docno")
+            self.mode = Mode.DOCNO
         elif tag == 'doc':
-            print('starting doc')
+            self.mode = Mode.DOC
             
     def handle_endtag(self, tag):
         mode = Mode.UNDEF
-        print("ending :", tag)
+        if tag == 'doc':
+            print('Ended Doc')
+            print('ID :', self.current_id)
+            print('content :', self.current_text)
+            self.current_text = ''
 
     def handle_data(self, data):
-        data = data.strip()
-        if len(data) > 0:
-            print("data: ", data)
+        data = data.strip().replace('\n','')
+        if self.mode == Mode.TEXT:
+            self.current_text = self.current_text + data
+        elif self.mode == Mode.DOCNO:
+            current_id = data
 
 
 def convert_trec_to_jsonl(path):
