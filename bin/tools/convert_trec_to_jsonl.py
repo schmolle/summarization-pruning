@@ -26,7 +26,7 @@ class TrecParser(HTMLParser):
             print("END of doc")
 
     def handle_data(self, data):
-        data = data.strip().trim()
+        data = data.strip()
         if len(data) > 0:
             print("data: ", data)
 
