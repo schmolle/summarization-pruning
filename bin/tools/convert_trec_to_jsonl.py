@@ -14,8 +14,9 @@ class TrecParser(HTMLParser):
 
 def convert_trec_to_jsonl(path):
     counter = 0
-    with gzip.open(path, 'r') as f:
+    with gzip.open(path, 'rt') as f:
         for line in f:
+            
             print(line)
             trec_parser = TrecParser()
             trec_parser.feed(line)
