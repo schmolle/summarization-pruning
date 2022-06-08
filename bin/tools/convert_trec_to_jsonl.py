@@ -26,7 +26,9 @@ class TrecParser(HTMLParser):
             print("END of doc")
 
     def handle_data(self, data):
-        print("Encountered some data  :", data.trim())
+        data = data.strip().trim()
+        if len(data) > 0:
+            print("data: ", data)
 
 
 def convert_trec_to_jsonl(path):
