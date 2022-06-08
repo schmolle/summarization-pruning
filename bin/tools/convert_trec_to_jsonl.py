@@ -9,9 +9,9 @@ class Mode(Enum):
     
     
 class TrecParser(HTMLParser):
-    current_text
-    current_id
-    mode
+    current_text = 0
+    current_id = 0
+    mode = 0
     
     def handle_starttag(self, tag, attrs):
         if tag == 'text':
