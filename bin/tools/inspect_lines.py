@@ -12,12 +12,12 @@ logging.info("started run")
 try:
 	counter = 0
 
-	with gzip.open('/home/jschmolzi/collections/msmarco-doc/msmarco-docs.trec.gz','rt') as f:
+	with gzip.open('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz','rt') as f:
 		for line in f:
-			length = len(line) 
-			if length < 20:
-				logging.info("Line %d with length %d found" % (counter, length))
+			print(line)
 			counter = counter + 1
+			if counter > 100:
+				break
 
 	logging.info("ended run")
 except Exception as e:
