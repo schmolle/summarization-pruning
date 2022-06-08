@@ -11,7 +11,7 @@ class Mode(Enum):
 class TrecParser(HTMLParser):
     current_text = 0
     current_id = 0
-    mode = 0
+    mode = Mode.UNDEF
     
     def handle_starttag(self, tag, attrs):
         if tag == 'text':
@@ -22,8 +22,8 @@ class TrecParser(HTMLParser):
             print('starting doc')
             
     def handle_endtag(self, tag):
-        if tag == 'doc':
-            print("END of doc")
+        mode = Mode.UNDEF
+        print("ending :", tag)
 
     def handle_data(self, data):
         data = data.strip()
@@ -42,6 +42,5 @@ def convert_trec_to_jsonl(path):
                 break
             
 if __name__ == "__main__":
-    print("start")
     convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz')
-    print("end")
+    
