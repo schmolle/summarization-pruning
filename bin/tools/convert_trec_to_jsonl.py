@@ -23,4 +23,6 @@ def convert_trec_to_jsonl(path):
                 break
             
 if __name__ == "__main__":
+    print("start")
     convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz')
+    print("end")
