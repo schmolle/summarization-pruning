@@ -10,7 +10,7 @@ class Mode(Enum):
     
     
 class TrecParser(HTMLParser):
-    current_text = 0
+    current_text = ''
     current_id = 0
     mode = Mode.UNDEF
     
