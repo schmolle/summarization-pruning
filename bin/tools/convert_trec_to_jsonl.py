@@ -15,6 +15,7 @@ def convert_trec_to_jsonl(path):
     counter = 0
     with gzip.open(path, 'r') as f:
         for line in f:
+            print(line)
             trec_parser = TrecParser()
             trec_parser.feed(line)
             counter = counter + 1
