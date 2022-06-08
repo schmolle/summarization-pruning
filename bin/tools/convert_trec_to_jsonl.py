@@ -1,4 +1,5 @@
 from html.parser import HTMLParser
+import gzip
 
 class TrecParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
