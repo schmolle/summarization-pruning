@@ -1,12 +1,29 @@
 from html.parser import HTMLParser
 import gzip
+from enum import Enum
 
+class Mode(Enum):
+    UNDEF = 0
+    TEXT = 1
+    ID = 2
+    
+    
 class TrecParser(HTMLParser):
+    current_text
+    current_id
+    mode
+    
     def handle_starttag(self, tag, attrs):
-        print("Encountered a start tag:", tag)
-
+        if tag == 'text':
+            print("starting text")
+        elif tag == 'docno':
+            print("starting docno")
+        elif tag == 'doc':
+            print('starting doc')
+            
     def handle_endtag(self, tag):
-        print("Encountered an end tag :", tag)
+        if tag == 'doc':
+            print("END of doc")
 
     def handle_data(self, data):
         print("Encountered some data  :", data)
@@ -16,8 +33,6 @@ def convert_trec_to_jsonl(path):
     counter = 0
     with gzip.open(path, 'rt') as f:
         for line in f:
-            
-            print(line)
             trec_parser = TrecParser()
             trec_parser.feed(line)
             counter = counter + 1
