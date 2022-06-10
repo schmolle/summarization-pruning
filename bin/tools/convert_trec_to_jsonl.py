@@ -48,7 +48,8 @@ def convert_trec_to_jsonl(path):
         for line in f:
             trec_parser.feed(line)
             counter = counter + 1
-            if counter > 34:
+            if counter > 500
+            :
                 break
             
 if __name__ == "__main__":
