@@ -15,17 +15,14 @@ class TrecParser(HTMLParser):
     mode = Mode.UNDEF
     
     def handle_starttag(self, tag, attrs):
-        print("start mode : '%s'" % (tag,))
         if tag == 'text':
             self.mode = Mode.TEXT
-            print("TEXT")
         elif tag == 'docno':
             self.mode = Mode.DOCNO
         elif tag == 'doc':
             self.mode = Mode.DOC
             
     def handle_endtag(self, tag):
-        print("end mode :", tag)
         self.mode = Mode.UNDEF
         if tag == 'doc':
             print('Ended Doc')
@@ -34,7 +31,6 @@ class TrecParser(HTMLParser):
             self.current_text = ''
 
     def handle_data(self, data):
-        print("data :", data)
         data = data.strip().replace('\n','')
         if self.mode == Mode.TEXT:
             if self.current_text != '':
