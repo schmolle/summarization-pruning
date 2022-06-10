@@ -18,7 +18,7 @@ class TrecParser(HTMLParser):
     
     def __init__(self, outfile):
         HTMLParser.__init__(self)
-        self.out_file = outfile
+        self.outfile = outfile
         
     def handle_starttag(self, tag, attrs):
         if tag == 'text':
