@@ -16,8 +16,9 @@ class TrecParser(HTMLParser):
     
     def handle_starttag(self, tag, attrs):
         print("start mode : '%s'" % (tag,))
-        if tag == ' text':
+        if tag == 'text':
             self.mode = Mode.TEXT
+            ptint("TEXT")
         elif tag == 'docno':
             self.mode = Mode.DOCNO
         elif tag == 'doc':
