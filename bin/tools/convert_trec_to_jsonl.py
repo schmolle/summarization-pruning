@@ -17,6 +17,7 @@ class TrecParser(HTMLParser):
     outfile = None
     
     def __init__(self, outfile):
+        HTMLParser.__init__(self)
         self.out_file = outfile
         
     def handle_starttag(self, tag, attrs):
