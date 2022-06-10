@@ -18,7 +18,7 @@ class TrecParser(HTMLParser):
         print("start mode : '%s'" % (tag,))
         if tag == 'text':
             self.mode = Mode.TEXT
-            ptint("TEXT")
+            print("TEXT")
         elif tag == 'docno':
             self.mode = Mode.DOCNO
         elif tag == 'doc':
