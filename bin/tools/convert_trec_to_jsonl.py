@@ -53,14 +53,10 @@ def write_jsonl(outfile, data):
     outfile.write(json.dumps(data) + "\n")
 
 def convert_trec_to_jsonl(in_path, out_path):
-    counter = 0
     with gzip.open(in_path, 'rt') as infile, open(out_path, 'w+') as outfile:
         trec_parser = TrecParser(outfile)
         for line in infile:
             trec_parser.feed(line)
-            counter = counter + 1
-            if counter > 500:
-                break
             
 if __name__ == "__main__":
     convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz',
