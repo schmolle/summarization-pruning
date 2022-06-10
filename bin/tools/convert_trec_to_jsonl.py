@@ -14,10 +14,10 @@ class TrecParser(HTMLParser):
     current_text = ''
     current_id = ''
     mode = Mode.UNDEF
-    out_file = None
+    outfile = None
     
-    def __init__(self, out_file):
-        self.out_file = out_file
+    def __init__(self, outfile):
+        self.out_file = outfile
         
     def handle_starttag(self, tag, attrs):
         if tag == 'text':
@@ -53,9 +53,9 @@ def write_jsonl(outfile, data):
 
 def convert_trec_to_jsonl(in_path, out_path):
     counter = 0
-    with gzip.open(in_path, 'rt') as f, open(out_path, 'w+'):
-        trec_parser = TrecParser()
-        for line in f:
+    with gzip.open(in_path, 'rt') as infile, open(out_path, 'w+') as outfile:
+        trec_parser = TrecParser(outfile)
+        for line in infile:
             trec_parser.feed(line)
             counter = counter + 1
             if counter > 500:
