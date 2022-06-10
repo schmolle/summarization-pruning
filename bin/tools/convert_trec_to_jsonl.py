@@ -36,6 +36,7 @@ class TrecParser(HTMLParser):
     def handle_data(self, data):
         print("data :", data)
         data = data.strip().replace('\n','')
+        print(self.mode)
         if self.mode == Mode.TEXT:
             self.current_text = self.current_text + data
         elif self.mode == Mode.DOCNO:
