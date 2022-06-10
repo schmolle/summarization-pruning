@@ -11,12 +11,12 @@ class Mode(Enum):
     
 class TrecParser(HTMLParser):
     current_text = ''
-    current_id = 0
+    current_id = ''
     mode = Mode.UNDEF
     
     def handle_starttag(self, tag, attrs):
-        print("start mode :", tag)
-        if tag == 'text':
+        print("start mode : '%s'" % (tag,))
+        if tag == ' text':
             self.mode = Mode.TEXT
         elif tag == 'docno':
             self.mode = Mode.DOCNO
