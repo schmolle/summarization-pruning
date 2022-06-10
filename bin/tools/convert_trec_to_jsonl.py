@@ -26,7 +26,7 @@ class TrecParser(HTMLParser):
             
     def handle_endtag(self, tag):
         print("end mode :", tag)
-        mode = Mode.UNDEF
+        self.mode = Mode.UNDEF
         if tag == 'doc':
             print('Ended Doc')
             print('ID :', self.current_id)
