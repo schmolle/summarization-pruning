@@ -1,6 +1,7 @@
 from html.parser import HTMLParser
 import gzip
 from enum import Enum
+import json
 
 class Mode(Enum):
     UNDEF = 0
@@ -13,7 +14,11 @@ class TrecParser(HTMLParser):
     current_text = ''
     current_id = ''
     mode = Mode.UNDEF
+    out_file = None
     
+    def __init__(self, out_file):
+        self.out_file = out_file
+        
     def handle_starttag(self, tag, attrs):
         if tag == 'text':
             self.mode = Mode.TEXT
@@ -25,9 +30,11 @@ class TrecParser(HTMLParser):
     def handle_endtag(self, tag):
         self.mode = Mode.UNDEF
         if tag == 'doc':
-            print('Ended Doc')
-            print('ID :', self.current_id)
-            print('content :', self.current_text)
+            # print('Ended Doc')
+            # print('ID :', self.current_id)
+            # print('content :', self.current_text)
+            data_dict = {'id' : self.current_id, 'body' : self.current_text}
+            write_jsonl(self.outfile, data_dict)
             self.current_text = ''
 
     def handle_data(self, data):
@@ -41,9 +48,12 @@ class TrecParser(HTMLParser):
             self.current_id = data
 
 
-def convert_trec_to_jsonl(path):
+def write_jsonl(outfile, data):
+    outfile.write(json.dumps(data) + "\n")
+
+def convert_trec_to_jsonl(in_path, out_path):
     counter = 0
-    with gzip.open(path, 'rt') as f:
+    with gzip.open(in_path, 'rt') as f, open(out_path, 'w+'):
         trec_parser = TrecParser()
         for line in f:
             trec_parser.feed(line)
@@ -52,5 +62,6 @@ def convert_trec_to_jsonl(path):
                 break
             
 if __name__ == "__main__":
-    convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz')
+    convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz',
+                          '/home/jschmolzi/anserini/collections/msmarco-doc-json-base/msmarco-docs.jsonl')
     
