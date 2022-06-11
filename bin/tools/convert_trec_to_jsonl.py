@@ -2,6 +2,9 @@ from html.parser import HTMLParser
 import gzip
 from enum import Enum
 import json
+import logging
+
+logging.basicConfig(format='%(asctime)s %(message)s', filename='/home/jschmolzi/logs/tools/converter.log', level=logging.DEBUG)
 
 class Mode(Enum):
     UNDEF = 0
@@ -53,10 +56,24 @@ def write_jsonl(outfile, data):
     outfile.write(json.dumps(data) + "\n")
 
 def convert_trec_to_jsonl(in_path, out_path):
-    with gzip.open(in_path, 'rt') as infile, open(out_path, 'w+') as outfile:
-        trec_parser = TrecParser(outfile)
-        for line in infile:
-            trec_parser.feed(line)
+    logging.info("############################################################################")
+    logging.info("started run")
+    counter = 0
+    try:
+        with gzip.open(in_path, 'rt') as infile, open(out_path, 'w+') as outfile:
+            trec_parser = TrecParser(outfile)
+            for line in infile:
+                try:
+                    trec_parser.feed(line)
+                    counter = counter + 1
+                    if counter > 34:
+                        break
+                except Exception as e:
+                    logging.error("Error in Line: %s" % (e,))
+    except Exception as e:
+        logging.error("Error in Function: %s" % (e,))
+    logging.info("Parsed %d lines" % (counter,))
+    logging.info("ended run")
             
 if __name__ == "__main__":
     convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz',
