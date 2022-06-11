@@ -66,8 +66,6 @@ def convert_trec_to_jsonl(in_path, out_path):
                 try:
                     trec_parser.feed(line)
                     counter = counter + 1
-                    if counter > 34:
-                        break
                 except Exception as e:
                     logging.error("Error in Line: %s" % (e,))
     except Exception as e:
