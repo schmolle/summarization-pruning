@@ -59,6 +59,7 @@ def convert_trec_to_jsonl(in_path, out_path):
     logging.info("############################################################################")
     logging.info("started run")
     counter = 0
+    last_counter = 0
     try:
         with gzip.open(in_path, 'rt') as infile, open(out_path, 'w+') as outfile:
             trec_parser = TrecParser(outfile)
@@ -66,6 +67,9 @@ def convert_trec_to_jsonl(in_path, out_path):
                 try:
                     trec_parser.feed(line)
                     counter = counter + 1
+                    if (counter - 10.000) > last_counter:
+                        logging.info("Parsed %d lines" % (counter,))
+                        last_counter = counter
                 except Exception as e:
                     logging.error("Error in Line: %s" % (e,))
     except Exception as e:
