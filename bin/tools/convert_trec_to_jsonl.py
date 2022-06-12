@@ -4,7 +4,8 @@ from enum import Enum
 import json
 import logging
 
-logging.basicConfig(format='%(asctime)s %(message)s', filename='/home/jschmolzi/logs/tools/converter.log', level=logging.DEBUG)
+logfile = '/home/jschmolzi/logs/tools/converter.log'
+logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile , level=logging.DEBUG)
 
 class Mode(Enum):
     UNDEF = 0
@@ -78,6 +79,10 @@ def convert_trec_to_jsonl(in_path, out_path):
     logging.info("ended run")
             
 if __name__ == "__main__":
-    convert_trec_to_jsonl('/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz',
-                          '/home/jschmolzi/anserini/collections/msmarco-doc-json-base/msmarco-docs.jsonl')
+    infile = '/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.trec.gz'
+    outfile = '/home/jschmolzi/anserini/collections/msmarco-doc-json-base/msmarco-docs.jsonl'
+    print("logging to %s" % (logfile,))
+    print("writing to %s" % (outfile,))
+    
+    convert_trec_to_jsonl(infile, outfile)
     
