@@ -30,7 +30,7 @@ def convert_tsv_to_jsonl(in_path, out_path, max_lines_per_file):
             
 if __name__ == "__main__":
     logging.info("Run started")
-    infile = '/home/jschmolzi/anserini/collections/msmarco-doc2/msmarco-docs.tsv.gz'
+    infile = '/home/jschmolzi/anserini/collections/msmarco-doc2/msmarco-docs.tsv'
     outfile = '/home/jschmolzi/anserini/collections/msmarco-doc-json-base'
     print("logging to %s" % (logfile,))
     print("writing to %s" % (outfile,))
