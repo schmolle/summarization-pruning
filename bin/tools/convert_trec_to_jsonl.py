@@ -19,6 +19,7 @@ class TrecParser(HTMLParser):
     current_id = ''
     mode = Mode.UNDEF
     outfile = None
+    doc_counter = 0
     
     def __init__(self, outfile):
         HTMLParser.__init__(self)
@@ -41,6 +42,7 @@ class TrecParser(HTMLParser):
             data_dict = {'id' : self.current_id, 'body' : self.current_text}
             write_jsonl(self.outfile, data_dict)
             self.current_text = ''
+            self.doc_counter = self.doc_counter + 1
 
     def handle_data(self, data):
         data = data.strip().replace('\n','')
@@ -68,7 +70,7 @@ def convert_trec_to_jsonl(in_path, out_path):
                 try:
                     trec_parser.feed(line)
                     counter = counter + 1
-                    if (counter - 10.000) > last_counter:
+                    if (counter - 100,000) >= last_counter:
                         logging.info("Parsed %d lines" % (counter,))
                         last_counter = counter
                 except Exception as e:
