@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sh target/appassembler/bin/IndexCollection -threads 20 -collection JsonCollection -generator DefaultLuceneDocumentGenerator -input collections/msmarco-doc-json-base/ -index indexes/msmarco-doc/lucene-in
+dex-msmarco-base -storePositions -storeDocvectors -storeRaw
+ 
