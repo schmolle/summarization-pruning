@@ -17,8 +17,6 @@ def producer(q, infile_name):
 	with jsonlines.open(infile_name, 'r') as infile:
 		for line in infile:
 			q.put(line)
-			if counter > 5:
-				break
 			if (counter % 10000) == 0:
 				logging.info("%d items queued" % (counter,))
 			counter = counter + 1
