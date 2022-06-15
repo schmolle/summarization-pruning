@@ -25,7 +25,7 @@ def summarize(infile_name, outdir_name):
 			
 			new_contents = longformer_pipeline.summarize(line['contents'])
 			print(new_contents)
-			line['contents'] = new_contents[0]
+			line['contents'] = new_contents[0]['summary_text']
 			
 			print(line['id'])
 			print(line['url'])
