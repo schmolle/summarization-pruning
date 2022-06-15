@@ -3,9 +3,9 @@ from transformers import pipeline
 class PegasusWithPipeline():
     _Pegasus = None
 
-    def __init__(self):
+    def __init__(self, device = 0):
         model_name = "google/pegasus-xsum"
-        self._Pegasus = pipeline("summarization", model=model_name, device=0)
+        self._Pegasus = pipeline("summarization", model=model_name, device=device)
 
     def summarize(self, txt):
         return self._Pegasus(txt, max_length=130, min_length=30, do_sample=False)
