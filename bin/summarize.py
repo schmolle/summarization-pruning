@@ -15,8 +15,7 @@ def summarize(infile_name, outdir_name):
 	filename = infile_name.split('/')[-1]
 	outfile_name = os.path.join(outdir_name, filename)
 	print(f'Writing to file {outfile_name}')
-	longformer = Longformer_Impl.Longformer()
-	command_list.append("longformer.summarize(txt)")
+	longformer_pipeline = Longformer_Impl_With_Pipeline.LongformerWithPipeline()
 	with jsonlines.open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
 		for line in infile:
 			print(line['id'])
@@ -24,7 +23,7 @@ def summarize(infile_name, outdir_name):
 			print(line['title'])
 			print(line['contents'])
 			
-			new_contents = longformer.summarize(line['contents'])
+			new_contents = longformer_pipeline.summarize(txt)(line['contents'])
 			line['contents'] = new_contents
 			
 			print(line['id'])
