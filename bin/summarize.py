@@ -23,7 +23,7 @@ def summarize(infile_name, outdir_name):
 			print(line['title'])
 			print(line['contents'])
 			
-			new_contents = longformer_pipeline.summarize(txt)(line['contents'])
+			new_contents = longformer_pipeline.summarize(line['contents'])
 			line['contents'] = new_contents
 			
 			print(line['id'])
@@ -37,6 +37,7 @@ def summarize(infile_name, outdir_name):
 
 if __name__ == "__main__":
 	# logging.info('Run Started')
+	print(f'Logging to file {logfile}')
 	infile_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-base/docs00.json'
 	outdir_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-00'
 	summarize(infile_name, outdir_name)
