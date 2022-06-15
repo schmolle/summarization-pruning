@@ -52,7 +52,7 @@ if __name__ == "__main__":
 	
 	longformer_pipeline_device_0 = Longformer_Impl_With_Pipeline.LongformerWithPipeline(0)
 	longformer_pipeline_device_1 = Longformer_Impl_With_Pipeline.LongformerWithPipeline(1)
-	
+	print("Models loaded")
 	q = Queue(30)
 	with open(outfile_name_0, 'w+') as outfile_0, open(outfile_name_1, 'w+') as outfile_1:
 		consumers = [Thread(target=consumer, args=(q, outfile_0, longformer_pipeline_device_0)),
