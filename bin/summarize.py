@@ -32,9 +32,9 @@ def consumer(q, outfile_name, longformer):
 				q.put(item)
 				break
 			try:
-				new_contents = longformer.summarize(line['contents'])
-				line['contents'] = new_contents[0]['summary_text']
-				outfile.write(json.dumps(line) + '\n')
+				new_contents = longformer.summarize(item['contents'])
+				item['contents'] = new_contents[0]['summary_text']
+				outfile.write(json.dumps(item) + '\n')
 			except Exception as e:
 				logging.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (line['id'], line['url'], line['title'], line['contents']))
 				logging.error("With error %s" % (e,))
