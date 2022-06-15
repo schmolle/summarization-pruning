@@ -24,14 +24,14 @@ def summarize(infile_name, outdir_name):
 			print(line['contents'])
 			
 			new_contents = longformer_pipeline.summarize(line['contents'])
-			line['contents'] = new_contents
+			line['contents'] = new_contents['summary_text']
 			
 			print(line['id'])
 			print(line['url'])
 			print(line['title'])
 			print(line['contents'])
 			
-			outfile_name.write(json.dumps(line) + '\n')
+			outfile.write(json.dumps(line) + '\n')
 			break		
 	
 
