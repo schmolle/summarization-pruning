@@ -44,8 +44,8 @@ if __name__ == "__main__":
 	infile_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-base/docs00.json'
 	outdir_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-00'
 	filename = infile_name.split('/')[-1]
-	outfile_name_0 = os.path.join(outdir_name, '0', filename)
-	outfile_name_1 = os.path.join(outdir_name, '1', filename)
+	outfile_name_0 = os.path.join(outdir_name, '0' + filename)
+	outfile_name_1 = os.path.join(outdir_name, '1' + filename)
 	print(f'Writing to file {outfile_name_0}')
 	print(f'Writing to file {outfile_name_1}')
 	
