@@ -19,12 +19,8 @@ def summarize(infile_name, outdir_name):
 	with jsonlines.open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
 		for line in infile:
 			print(line)
-			line_dict = json.dumps(line)
-			print(line)
-			# print(line_dict)
-			print(line_dict[0])
-			print(line_dict[1])
-			print(line_dict[2])
+			print(line[0])
+			print(line['id'])
 			break		
 	
 
