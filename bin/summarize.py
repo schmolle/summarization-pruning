@@ -27,9 +27,9 @@ def producer(q, infile_name):
 def consumer(q, outfile_name, longformer):
 	with open(outfile_name, 'w+') as outfile:
 		while True:
-			item = queue.get()
+			item = q.get()
 			if item is None:
-				queue.put(item)
+				q.put(item)
 				break
 			try:
 				new_contents = longformer.summarize(line['contents'])
