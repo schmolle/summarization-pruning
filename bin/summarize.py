@@ -3,6 +3,7 @@ import logging
 import os
 import json
 import jsonlines
+import queue
 
 if os.name == 'nt':
 	logfile = "../logs/summarizer.log"
