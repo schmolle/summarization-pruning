@@ -17,9 +17,12 @@ def summarize(infile_name, outdir_name):
 	
 	with open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
 		line = infile.readline()
-		line_list = json.dumps(line)
+		line_dict = json.dumps(line)
 		print(line)
-		print(line_list)		
+		# print(line_dict)
+		print(line_dict['id'])
+		print(line_dict['url'])
+		print(line_dict['title'])		
 	
 
 if __name__ == "__main__":
