@@ -8,4 +8,4 @@ class LongformerWithPipeline():
         self._Longformer = pipeline("summarization", model=model_name, device=device)  
 
     def summarize(self, txt):
-        return self._Longformer(txt, max_length=130, min_length=30, do_sample=False)
+        return self._Longformer(txt, max_length=50, min_length=30, do_sample=False)
