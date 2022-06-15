@@ -2,6 +2,7 @@ from summarize import Longformer_Impl_With_Pipeline
 import logging
 import os
 import json
+import jsonlines
 
 if os.name == 'nt':
 	logfile = "../logs/summarizer.log"
@@ -15,7 +16,7 @@ def summarize(infile_name, outdir_name):
 	outfile_name = os.path.join(outdir_name, filename)
 	print(f'Writing to file {outfile_name}')
 	
-	with open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
+	with jsonlines.open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
 		line = infile.readline()
 		line_dict = json.dumps(line)
 		print(line)
