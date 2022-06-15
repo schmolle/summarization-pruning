@@ -17,13 +17,14 @@ def summarize(infile_name, outdir_name):
 	print(f'Writing to file {outfile_name}')
 	
 	with jsonlines.open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
-		line = infile.readline()
-		line_dict = json.dumps(line)
-		print(line)
-		# print(line_dict)
-		print(line_dict[0])
-		print(line_dict[1])
-		print(line_dict[2])		
+		for line in infile:
+			line_dict = json.dumps(line)
+			print(line)
+			# print(line_dict)
+			print(line_dict[0])
+			print(line_dict[1])
+			print(line_dict[2])
+			break		
 	
 
 if __name__ == "__main__":
