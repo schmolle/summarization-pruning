@@ -21,12 +21,12 @@ def producer(q, infile_name):
 			if counter > 5:
 				break
 			if (counter % 10000) == 0:
-				logger.info("%d items queued" % (counter,))
+				logging.info("%d items queued" % (counter,))
 			counter = counter + 1
 			
 def consumer(q, outfile_name, longformer):
 	with open(outfile_name, 'w+') as outfile:
-		while true:
+		while True:
 			item = queue.get()
 			if item is None:
 				queue.put(item)
@@ -36,8 +36,8 @@ def consumer(q, outfile_name, longformer):
 				line['contents'] = new_contents[0]['summary_text']
 				outfile.write(json.dumps(line) + '\n')
 			except Exception as e:
-				logger.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (line['id'], line['url'], line['title'], line['contents']))
-				logger.error("With error %s" % (e,))
+				logging.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (line['id'], line['url'], line['title'], line['contents']))
+				logging.error("With error %s" % (e,))
 		
 
 if __name__ == "__main__":
