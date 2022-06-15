@@ -1,0 +1,7 @@
+#!/bin/bash
+
+target/appassembler/bin/SearchCollection -hits 1000 -parallelism 20 \
+ -index indexes/msmarco-doc/lucene-index-msmarco-base \
+ -topicreader TsvInt -topics src/main/resources/topics-and-qrels/topics.msmarco-doc.dev.txt \
+ -output runs/run.msmarco-doc.dev.bm25.txt -bm25
+ 
