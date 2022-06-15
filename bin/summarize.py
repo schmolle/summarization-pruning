@@ -17,13 +17,12 @@ def producer(q, infile_name):
 	with jsonlines.open(infile_name, 'r') as infile:
 		for line in infile:
 			q.put(line)
-			print("put line %s" % (counter,))
 			if counter > 5:
 				break
 			if (counter % 10000) == 0:
 				logging.info("%d items queued" % (counter,))
 			counter = counter + 1
-			
+		q.put(None)
 def consumer(q, outfile, longformer):
 	while True:
 		item = q.get()
@@ -34,7 +33,6 @@ def consumer(q, outfile, longformer):
 			new_contents = longformer.summarize(item['contents'])
 			item['contents'] = new_contents[0]['summary_text']
 			outfile.write(json.dumps(item) + '\n')
-			print("writing item to %s" % (outfile,))
 		except Exception as e:
 			logging.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (item['id'], item['url'], item['title'], item['contents']))
 			logging.error("With error %s" % (e,))
