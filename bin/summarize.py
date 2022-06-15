@@ -20,9 +20,9 @@ def summarize(infile_name, outdir_name):
 		line_dict = json.dumps(line)
 		print(line)
 		# print(line_dict)
-		print(line_dict['id'])
-		print(line_dict['url'])
-		print(line_dict['title'])		
+		print(line_dict[0])
+		print(line_dict[1])
+		print(line_dict[2])		
 	
 
 if __name__ == "__main__":
