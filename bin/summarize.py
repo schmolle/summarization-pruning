@@ -26,14 +26,14 @@ def consumer(q, outfile_name, longformer):
 	with open(outfile_name, 'w+') as outfile:
 		while true:
 			item = queue.get()
-	        if item is None:
-	            queue.put(item)
-	            break
-	        try:
-	        	new_contents = longformer.summarize(line['contents'])
-	        	line['contents'] = new_contents[0]['summary_text']
-	        	outfile.write(json.dumps(line) + '\n')
-	        except Exception as e:
+			if item is None:
+				queue.put(item)
+				break
+			try:
+				new_contents = longformer.summarize(line['contents'])
+				line['contents'] = new_contents[0]['summary_text']
+				outfile.write(json.dumps(line) + '\n')
+			except Exception as e:
 				logger.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (line['id'], line['url'], line['title'], line['contents']))
 				logger.error("With error %s" % (e,))
 		
