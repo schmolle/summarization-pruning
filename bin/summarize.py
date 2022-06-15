@@ -13,6 +13,7 @@ logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=lo
 def summarize(infile_name, outdir_name):
 	filename = infile_name.split('/')[-1]
 	outfile_name = os.path.join(outdir_name, filename)
+	print(f'Writing to file {outfile_name}')
 	
 	with open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
 		line = infile.readline()
