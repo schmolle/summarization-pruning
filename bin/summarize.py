@@ -40,6 +40,7 @@ if __name__ == "__main__":
 	print(f'Logging to file {logfile}')
 	infile_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-base/docs00.json'
 	outdir_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-00'
+	
 	summarize(infile_name, outdir_name)
 	
 	# logging.info('Run Finished')
