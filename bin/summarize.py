@@ -17,7 +17,7 @@ def producer(q, infile_name):
 	with jsonlines.open(infile_name, 'r') as infile:
 		for line in infile:
 			q.put(line)
-			
+			print("put line %s" % (counter,))
 			if counter > 5:
 				break
 			if (counter % 10000) == 0:
@@ -34,6 +34,7 @@ def consumer(q, outfile, longformer):
 			new_contents = longformer.summarize(item['contents'])
 			item['contents'] = new_contents[0]['summary_text']
 			outfile.write(json.dumps(item) + '\n')
+			print("writing item to %s" % (outfile,))
 		except Exception as e:
 			logging.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (item['id'], item['url'], item['title'], item['contents']))
 			logging.error("With error %s" % (e,))
@@ -55,6 +56,7 @@ if __name__ == "__main__":
 	print("Models loaded")
 	
 	q = Queue(30)
+	
 	with open(outfile_name_0, 'w+') as outfile_0, open(outfile_name_1, 'w+') as outfile_1:
 		consumers = [Thread(target=consumer, args=(q, outfile_0, longformer_pipeline_device_0)),
 					 Thread(target=consumer, args=(q, outfile_1, longformer_pipeline_device_1))]
