@@ -24,20 +24,19 @@ def producer(q, infile_name):
 				logging.info("%d items queued" % (counter,))
 			counter = counter + 1
 			
-def consumer(q, outfile_name, longformer):
-	with open(outfile_name, 'w+') as outfile:
-		while True:
-			item = q.get()
-			if item is None:
-				q.put(item)
-				break
-			try:
-				new_contents = longformer.summarize(item['contents'])
-				item['contents'] = new_contents[0]['summary_text']
-				outfile.write(json.dumps(item) + '\n')
-			except Exception as e:
-				logging.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (item['id'], item['url'], item['title'], item['contents']))
-				logging.error("With error %s" % (e,))
+def consumer(q, outfile, longformer):
+	while True:
+		item = q.get()
+		if item is None:
+			q.put(item)
+			break
+		try:
+			new_contents = longformer.summarize(item['contents'])
+			item['contents'] = new_contents[0]['summary_text']
+			outfile.write(json.dumps(item) + '\n')
+		except Exception as e:
+			logging.error("Failed to Process line: id: %s, url:%s, title: %s, contents: %s" % (item['id'], item['url'], item['title'], item['contents']))
+			logging.error("With error %s" % (e,))
 		
 
 if __name__ == "__main__":
@@ -55,17 +54,17 @@ if __name__ == "__main__":
 	longformer_pipeline_device_1 = Longformer_Impl_With_Pipeline.LongformerWithPipeline(1)
 	
 	q = Queue(30)
-	
-	consumers = [Thread(target=consumer, args=(q, outfile_name_0, longformer_pipeline_device_0)),
-				 Thread(target=consumer, args=(q, outfile_name_1, longformer_pipeline_device_1))]
-	
-	for consumer in consumers:
-		consumer.start()
+	with open(outfile_name_0, 'w+') as outfile_0, open(outfile_name_1, 'w+') as outfile_1:
+		consumers = [Thread(target=consumer, args=(q, outfile_0, longformer_pipeline_device_0)),
+					 Thread(target=consumer, args=(q, outfile_1, longformer_pipeline_device_1))]
 		
-	producer = Thread(target=producer, args=(q, infile_name))
-	producer.start()
-	producer.join()
-	
-	for consumer in consumers:
-		consumer.join()	
+		for consumer in consumers:
+			consumer.start()
+			
+		producer = Thread(target=producer, args=(q, infile_name))
+		producer.start()
+		producer.join()
+		
+		for consumer in consumers:
+			consumer.join()	
 	# logging.info('Run Finished')
