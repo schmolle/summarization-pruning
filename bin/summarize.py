@@ -54,7 +54,7 @@ if __name__ == "__main__":
 	longformer_pipeline_device_0 = Longformer_Impl_With_Pipeline.LongformerWithPipeline(0)
 	longformer_pipeline_device_1 = Longformer_Impl_With_Pipeline.LongformerWithPipeline(1)
 	
-	q = queue.Queue(30)
+	q = Queue(30)
 	
 	consumers = [Thread(target=consumer, args=(q, outfile_name_0, longformer_pipeline_device_0)),
 				 Thread(target=consumer, args=(q, outfile_name_1, longformer_pipeline_device_1))]
