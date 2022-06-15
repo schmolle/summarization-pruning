@@ -1,37 +1,30 @@
-import gzip
-from transformers import pipeline
-from transformers import PegasusForConditionalGeneration, PegasusTokenizer
-import torch
+from summarize import Longformer_Impl_With_Pipeline
+import logging
+import os
+import json
+
+if os.name == 'nt':
+	logfile = "../logs/summarizer.log"
+else:
+	logfile = '/home/jschmolzi/logs/tools/summarizer.log'
+logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
 
 
-def doPegasus(txt):
-	src_text = """ PG&E stated it scheduled the blackouts in response to forecasts for high winds amid dry conditions. The aim is to reduce the risk of wildfires. Nearly 800 thousand customers were scheduled to be affected by the shutoffs which were expected to last through at least midday tomorrow."""
-	src_text = txt
-	model_name = "google/pegasus-xsum"
-	device = "cpu"
-	tokenizer = PegasusTokenizer.from_pretrained(model_name)
-	model = PegasusForConditionalGeneration.from_pretrained(model_name).to(device)
-	batch = tokenizer(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
-	translated = model.generate(**batch)
-	tgt_text = tokenizer.batch_decode(translated, skip_special_tokens=True)
-	return tgt_text
-
-def doBart(txt):
-	txt = txt[0:1024]
-	summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-	return summarizer(l1, max_length=130, min_length=30, do_sample=False)
-
+def summarize(infile_name, outdir_name):
+	filename = infile_name.split('/')[-1]
+	outfile_name = os.path.join(outdir_name, filename)
+	
+	with open(infile_name, 'r') as infile, open(outfile_name, 'w+') as outfile:
+		line = infile.readline()
+		line_list = json.dumps(line)
+		print(line)
+		print(line_list)		
+	
 
 if __name__ == "__main__":
-	with gzip.open('/data/ms-marco/fulldocs.tsv.gz','rt') as f:
-		l1 = f.readline()
-		print("L1 length: %s\n" % (len(l1),))
-		print(l1)
-		l1 = doBart(l1)
-		print(l1)
-
-		l2 = f.readline()
-		print(l2)
-		print("L2 length: %s\n" % (len(l2),))
-		l2 = doPegasus(l2)
-		print(l2)
+	# logging.info('Run Started')
+	infile_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-base/docs00.json'
+	outdir_name = '/home/jschmolzi/anserini/collections/msmarco-doc-json-00'
+	summarize(infile_name, outdir_name)
+	
+	# logging.info('Run Finished')
