@@ -15,10 +15,12 @@ def sum_file(infile_path, outfile_path, device):
 			if (counter % 10000) == 0:
 				logging.info("%d lines summarized" % (counter,))
 			counter = counter + 1
-			new_contents = longformer_pipeline.summarize(line['contents'])
-			line['contents'] = new_contents[0]['summary_text']
-			outfile.write(json.dumps(line) + '\n')
-			
+			try:
+				new_contents = longformer_pipeline.summarize(line['contents'])
+				line['contents'] = new_contents[0]['summary_text']
+				outfile.write(json.dumps(line) + '\n')
+			except Exception as e:
+				logging.error("Skipping line %d"  % (counter,))
 			
 if __name__ == "__main__":
 	# logging.info('Run Started')
