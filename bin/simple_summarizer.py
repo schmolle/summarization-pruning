@@ -40,7 +40,7 @@ if __name__ == "__main__":
 		print(f'Logging to file {logfile}')
 		
 		filename = infile_path.split('/')[-1]
-		outfile_name = os.path.join(outfile_path, filename)
+		outfile_path = os.path.join(outfile_path, filename)
 		sum_file(infile_path, outfile_path, device)
 		print(f'Writing to file {outfile_name}')
 			
