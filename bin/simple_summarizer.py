@@ -41,7 +41,7 @@ if __name__ == "__main__":
 		
 		filename = infile_path.split('/')[-1]
 		outfile_path = os.path.join(outfile_path, filename)
-		print(f'Writing to file {outfile_name}')
+		print(f'Writing to file {outfile_path}')
 		
 		sum_file(infile_path, outfile_path, device)
 		
