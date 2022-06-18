@@ -14,8 +14,6 @@ def sum_file(infile_path, outfile_path, device):
 		for line in infile:
 			if (counter % 10000) == 0:
 				logging.info("%d lines summarized" % (counter,))
-			if counter > 5:
-				break
 			counter = counter + 1
 			new_contents = longformer_pipeline.summarize(line['contents'])
 			line['contents'] = new_contents[0]['summary_text']
