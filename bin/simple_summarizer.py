@@ -34,15 +34,15 @@ if __name__ == "__main__":
 		infile_path = args[1]
 		outfile_path = args[2]
 		logfile = args[3]
-		device = args[4]
-	
-	logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
-	print(f'Logging to file {logfile}')
-	
-	filename = infile_path.split('/')[-1]
-	outfile_name = os.path.join(outfile_path, filename)
-	sum_file(infile_path, outfile_path, device)
-	print(f'Writing to file {outfile_name}')
+		device = int(args[4])
+		
+		logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
+		print(f'Logging to file {logfile}')
+		
+		filename = infile_path.split('/')[-1]
+		outfile_name = os.path.join(outfile_path, filename)
+		sum_file(infile_path, outfile_path, device)
+		print(f'Writing to file {outfile_name}')
 			
 		
 	# logging.info('Run Finished')
