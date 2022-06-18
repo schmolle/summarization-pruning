@@ -17,7 +17,7 @@ def sum_file(infile_path, outfile_path, device):
 			if counter > 5:
 				break
 			counter = counter + 1
-			new_contents = longformer.summarize(line['contents'])
+			new_contents = longformer_pipeline.summarize(line['contents'])
 			line['contents'] = new_contents[0]['summary_text']
 			outfile.write(json.dumps(line) + '\n')
 			
