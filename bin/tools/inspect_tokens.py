@@ -1,5 +1,7 @@
 import os
 import jsonlines
+from transformers import LEDTokenizer
+
 
 tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
 base_path = '/home/jschmolzi/anserini/collections/msmarco-doc-json-base'
