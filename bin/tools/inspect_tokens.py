@@ -17,6 +17,7 @@ for filename in os.listdir(base_path):
             line_length_split = len(line.split())
             
             input_ids = tokenizer(line, return_tensors="pt").input_ids.to("cuda")
+            print(input_ids)
             line_length = len(input_ids)
             
             if line_length > max_tokens:
