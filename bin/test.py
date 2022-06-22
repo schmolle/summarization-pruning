@@ -6,5 +6,5 @@ if __name__ == '__main__':
     longformer = Longformer_Impl_With_Pipeline.LongformerWithPipeline(0)
     for max, min in zip([100,50,30,20],[90,40,20,10]):
         print(longformer.summarize(txt, max, min))
-    print(longformer.summarize(txt, 0 , 0, False)[0]['summary_text'].split('\n')[0])       
+    print(longformer.summarize(txt, 0 , 0, False)[0]['summary_text'].split('\n')[0].strip())       
     # print(doBigBird(txt))
