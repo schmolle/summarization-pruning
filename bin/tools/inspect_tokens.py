@@ -13,5 +13,5 @@ for filename in os.listdir(base_path):
             if line_length > max_tokens:
                 too_long_counter = too_long_counter + 1
         too_long_counter_all = too_long_counter_all + too_long_counter
-        print('File "%s" has %d too long lines' %s (filename, ))
+        print('File "%s" has %d too long lines' % (filename, too_long_counter))
 print('%d too long files total' % (too_long_counter_all,))
