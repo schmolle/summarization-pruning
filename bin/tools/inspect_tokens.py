@@ -12,7 +12,7 @@ for filename in os.listdir(base_path):
         for line in infile:
             too_long_counter = 0
             line = line['contents']
-            input_ids = tokenizer(txt, return_tensors="pt").input_ids.to("cuda")
+            input_ids = tokenizer(line, return_tensors="pt").input_ids.to("cuda")
             line_length = len(input_ids)
             if line_length > max_tokens:
                 too_long_counter = too_long_counter + 1
