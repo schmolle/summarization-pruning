@@ -9,8 +9,8 @@ max_tokens = 16384 - 50
 too_long_counter_all = 0
 for filename in os.listdir(base_path):
     with jsonlines.open(os.path.join(base_path, filename), 'r') as infile:
+        too_long_counter = 0
         for line in infile:
-            too_long_counter = 0
             line = line['contents']
             input_ids = tokenizer(line, return_tensors="pt").input_ids.to("cuda")
             line_length = len(input_ids)
