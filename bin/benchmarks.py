@@ -79,6 +79,7 @@ if __name__ == '__main__':
 	# init pegasus
 	logging.info("###################################################################")
 	logging.info("Executing: %s" % (command_list,))
+	print('Logging to %s' % (logfile,))
 	for command in command_list:
 		try:
 			logging.info("calling command %s" % (command,))
