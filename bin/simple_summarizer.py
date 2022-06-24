@@ -13,6 +13,7 @@ def sum_file(infile_path, outfile_path, device):
 	max_tokens = 16384
 	print("Model loaded")
 	counter = 0
+	skip_counter = 0
 	with jsonlines.open(infile_path, 'r') as infile, open(outfile_path, 'w+') as outfile:
 		for line in infile:
 			if (counter % 10000) == 0:
@@ -29,9 +30,11 @@ def sum_file(infile_path, outfile_path, device):
 				line['contents'] = new_contents[0]['summary_text']
 				outfile.write(json.dumps(line) + '\n')
 			except Exception as e:
+				skip_counter = skip_counter + 1
 				logging.error("Skipping line %d"  % (counter,))
 				logging.error(e)
 			break
+	logging.info("Skipped %d lines in file %s" % (skip_counter, infile_path))
 			
 if __name__ == "__main__":
 	# logging.info('Run Started')
