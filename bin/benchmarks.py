@@ -9,12 +9,13 @@ if os.name == 'nt':
 	logfile = "../logs/times.log"
 else:
 	logfile = "/home/jschmolzi/logs/tools/times.log"
-logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
-
+	
 should_roll_over = os.path.isfile(logfile)
 handler = logging.handlers.RotatingFileHandler(logfile, mode='w', backupCount=5)
 if should_roll_over:  # log already exists, roll over!
     handler.doRollover()
+logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
+
 
 
 
