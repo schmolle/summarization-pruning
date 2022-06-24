@@ -15,8 +15,8 @@ class Longformer():
 		# set global_attention_mask on first token
 		global_attention_mask[:, 0] = 1
 				
-		sequences = self._model.generate(input_ids, global_attention_mask=global_attention_mask).sequences
+		#sequences = self._model.generate(input_ids, global_attention_mask=global_attention_mask).sequences
 		
-		summary = self._tokenizer.batch_decode(sequences)
-		
+		#summary = self._tokenizer.batch_decode(sequences)
+		summary = ''
 		return summary
