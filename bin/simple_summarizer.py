@@ -8,6 +8,8 @@ import jsonlines
 		
 def sum_file(infile_path, outfile_path, device):
 	longformer_pipeline = Longformer_Impl_With_Pipeline.LongformerWithPipeline(device)
+	longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
+	max_tokens = 16384
 	print("Model loaded")
 	counter = 0
 	with jsonlines.open(infile_path, 'r') as infile, open(outfile_path, 'w+') as outfile:
@@ -16,11 +18,16 @@ def sum_file(infile_path, outfile_path, device):
 				logging.info("%d lines summarized" % (counter,))
 			counter = counter + 1
 			try:
+				tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids
+				print(tokens)
+				if len(tokens) > max_tokens:
+					continue
 				new_contents = longformer_pipeline.summarize(line['contents'])
 				line['contents'] = new_contents[0]['summary_text']
 				outfile.write(json.dumps(line) + '\n')
 			except Exception as e:
 				logging.error("Skipping line %d"  % (counter,))
+			break
 			
 if __name__ == "__main__":
 	# logging.info('Run Started')
@@ -35,7 +42,9 @@ if __name__ == "__main__":
 		outfile_path = args[2]
 		logfile = args[3]
 		device = int(args[4])
-		
+		if os.path.isfile(logfile):
+			os.remove(logfile)
+			
 		logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
 		print(f'Logging to file {logfile}')
 		
