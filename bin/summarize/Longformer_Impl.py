@@ -17,6 +17,6 @@ class Longformer():
 				
 		sequences = self._model.generate(input_ids, global_attention_mask=global_attention_mask).sequences
 		
-		summary = self._tokenizer.batch_decode(sequences)
+		summary = self._tokenizer.batch_decode(sequences).to("cuda")
 		
 		return summary
