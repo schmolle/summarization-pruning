@@ -5,7 +5,7 @@ import torch
 class Longformer():
 	
 	def __init__(self):
-		self._tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv").to("cuda")
+		self._tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
 		self._model = LEDForConditionalGeneration.from_pretrained("allenai/led-large-16384-arxiv", return_dict_in_generate=True).to("cuda")
 		
 	def summarize(self, txt):
