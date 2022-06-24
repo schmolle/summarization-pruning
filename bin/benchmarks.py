@@ -3,7 +3,7 @@ import torch
 import timeit
 import logging
 import os
-
+import logging.handlers
 
 if os.name == 'nt':
 	logfile = "../logs/times.log"
