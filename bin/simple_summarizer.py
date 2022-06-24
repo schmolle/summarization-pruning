@@ -28,6 +28,7 @@ def sum_file(infile_path, outfile_path, device):
 				outfile.write(json.dumps(line) + '\n')
 			except Exception as e:
 				logging.error("Skipping line %d"  % (counter,))
+				logging.error(e)
 			break
 			
 if __name__ == "__main__":
