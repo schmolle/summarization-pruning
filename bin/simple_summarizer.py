@@ -22,8 +22,6 @@ def sum_file(infile_path, outfile_path, device):
 			try:
 				txt = line['contents']
 				tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids[0]
-				print(tokens)
-				print(len(tokens))
 				if len(tokens) > max_tokens:
 					continue
 				new_contents = longformer_pipeline.summarize(txt)
@@ -33,7 +31,6 @@ def sum_file(infile_path, outfile_path, device):
 				skip_counter = skip_counter + 1
 				logging.error("Skipping line %d"  % (counter,))
 				logging.error(e)
-			break
 	logging.info("Skipped %d lines in file %s" % (skip_counter, infile_path))
 			
 if __name__ == "__main__":
