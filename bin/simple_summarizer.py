@@ -19,11 +19,12 @@ def sum_file(infile_path, outfile_path, device):
 				logging.info("%d lines summarized" % (counter,))
 			counter = counter + 1
 			try:
+				txt = line['contents']
 				tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids
 				print(tokens)
 				if len(tokens) > max_tokens:
 					continue
-				new_contents = longformer_pipeline.summarize(line['contents'])
+				new_contents = longformer_pipeline.summarize(txt)
 				line['contents'] = new_contents[0]['summary_text']
 				outfile.write(json.dumps(line) + '\n')
 			except Exception as e:
