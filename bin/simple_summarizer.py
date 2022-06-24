@@ -20,7 +20,7 @@ def sum_file(infile_path, outfile_path, device):
 			counter = counter + 1
 			try:
 				txt = line['contents']
-				tokens[0] = longformer_tokenizer(txt, return_tensors="pt").input_ids
+				tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids[0]
 				print(tokens)
 				print(len(tokens))
 				if len(tokens) > max_tokens:
