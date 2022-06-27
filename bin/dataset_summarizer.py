@@ -8,7 +8,7 @@ from datasets import load_dataset
 
 def map_to_summary(input, idx, pipeline):
 	if idx % 10000 == 0:
-		logger.info("%d indexed" % (idx,))
+		logging.info("%d indexed" % (idx,))
 	new_contents = pipeline.summarize(input['contents'])
 	input['contents'] = new_contents[0]['summary_text']
 	return input
@@ -28,16 +28,16 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = load_dataset('json', data_files=infile_path)	
 	dataset = dataset['train'].select(range(100))
 	
-	logger.info("Filtering...")
+	logging.info("Filtering...")
 	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer))
 	dataset = dataset.select(range(10))
 	
-	logger.info("Summarizing...")
+	logging.info("Summarizing...")
 	dataset = dataset.map(lambda input, idx: map_to_summary(input, idx, longformer_pipeline), with_indices=True)
 	
-	logger.info("Storing...")
+	logging.info("Storing...")
 	dataset.to_json(outfile_path)
-	logger.info("DONE!!!")
+	logging.info("DONE!!!")
 			
 if __name__ == "__main__":
 	# logging.info('Run Started')
