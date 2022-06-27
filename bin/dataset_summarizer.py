@@ -6,15 +6,12 @@ from transformers import LEDTokenizer
 from datasets import load_dataset
 
 longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
-too_long_counter = 0
 
 def filter_by_token_length(input):
 	max_tokens = 16384
 	txt = input['contents']
 	tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids[0]
 	token_length = len(tokens)
-	if token_length > max_tokens:
-		too_long_counter = too_long_counter + 1
 	return token_length <= max_tokens
 	
 def sum_file(infile_path, outfile_path, device):
@@ -51,8 +48,6 @@ if __name__ == "__main__":
 		print(f'Writing to file {outfile_path}')
 		
 		sum_file(infile_path, outfile_path, device)
-		
-		print(too_long_counter)
-			
+				
 		
 	# logging.info('Run Finished')
