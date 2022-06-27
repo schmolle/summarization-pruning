@@ -7,6 +7,8 @@ from datasets import load_dataset
 
 def filter_by_token_length(input, longformer_tokenizer):
 	max_tokens = 16384
+	print("INPUT")
+	print(input)
 	txt = input['contents']
 	tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids[0]
 	token_length = len(tokens)
