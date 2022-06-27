@@ -17,7 +17,7 @@ def sum_file(infile_path, outfile_path, device):
 	# longformer_pipeline = Longformer_Impl_With_Pipeline.LongformerWithPipeline(device)
 	longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
 	dataset = load_dataset('json', data_files=infile_path)
-	dataset = dataset['train'][:100]
+	dataset = dataset['train'][:4]
 	print(dataset)
 	print(len(dataset))
 	dataset = dataset.filter(filter_by_token_length)
