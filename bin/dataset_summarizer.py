@@ -52,6 +52,7 @@ if __name__ == "__main__":
 		
 		sum_file(infile_path, outfile_path, device)
 		
+		print(too_long_counter)
 			
 		
 	# logging.info('Run Finished')
