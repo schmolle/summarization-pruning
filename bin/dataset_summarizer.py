@@ -7,6 +7,7 @@ from datasets import load_dataset
 
 
 def map_to_summary(input, idx, pipeline):
+	print(idx)
 	if idx % 10 == 0:
 		print(idx)
 	new_contents = pipeline.summarize(input['contents'])
@@ -28,10 +29,10 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = load_dataset('json', data_files=infile_path)	
 	dataset = dataset['train'].select(range(100))
 	
-	dataset = dataset.filter(lambda input, idx: filter_by_token_length(input, idx ,longformer_tokenizer), with_indices=True)
-	dataset = dataset.select(range(1))
+	dataset = dataset.filter(lambda input: filter_by_token_length(input, idx, longformer_tokenizer))
+	dataset = dataset.select(range(15))
 	
-	dataset = dataset.map(lambda input: map_to_summary(input, longformer_pipeline))
+	dataset = dataset.map(lambda input, idx: map_to_summary(input, idx, longformer_pipeline), with_indices=True)
 	print(dataset[0])
 	
 			
