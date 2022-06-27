@@ -22,8 +22,8 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset['train']
 	print(dataset)
 	
-	dataset = dataset[:100]
-	print(dataset)
+	dataset = dataset.select(range(100))
+	print(dataset[:3])
 	
 	print(len(dataset))
 	
