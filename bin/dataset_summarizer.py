@@ -9,7 +9,6 @@ longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arx
 
 def filter_by_token_length(input):
 	max_tokens = 16384
-	print(tokenizer)
 	print("INPUT")
 	print(input)
 	txt = input['contents']
