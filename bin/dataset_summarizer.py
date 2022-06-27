@@ -20,7 +20,7 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset['train'].select(range(100))
 	
 	print(len(dataset))
-	dataset = dataset.filter(filter_by_token_length, tokenizer=longformer_tokenizer)
+	dataset = dataset.filter(filter_by_token_length, {'tokenizer' : longformer_tokenizer})
 	print(len(dataset))
 			
 if __name__ == "__main__":
