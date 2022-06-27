@@ -29,10 +29,11 @@ def sum_file(infile_path, outfile_path, device):
 	print(len(dataset))
 	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer))
 	print(len(dataset))
-	print(dataset.select(range(1)))
+	dataset = dataset.select(range(1))
+	print(dataset)
 	
-	dataset = dataset.matp(lambda input: map_to_summary(input, longformer_pipeline))
-	print(dataset.select(range(1)))
+	dataset = dataset.map(lambda input: map_to_summary(input, longformer_pipeline))
+	print(dataset)
 	
 			
 if __name__ == "__main__":
