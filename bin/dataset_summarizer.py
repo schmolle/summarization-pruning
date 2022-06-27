@@ -19,6 +19,7 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = load_dataset('json', data_files=infile_path)	
 	dataset = dataset['train'].select(range(100))
 	
+	print(longformer_tokenizer)
 	print(len(dataset))
 	dataset = dataset.filter(filter_by_token_length, {'tokenizer' : longformer_tokenizer})
 	print(len(dataset))
