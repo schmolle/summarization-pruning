@@ -12,7 +12,7 @@ def filter_by_token_length(input):
 	txt = input['contents']
 	tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids[0]
 	token_length = len(tokens)
-	if token_length <= max_tokens:
+	if token_length > max_tokens:
 		print("REMOVED ONE")
 	return token_length <= max_tokens
 	
