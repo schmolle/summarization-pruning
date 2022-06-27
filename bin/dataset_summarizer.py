@@ -35,6 +35,7 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset.map(lambda input, idx: map_to_summary(input, idx, longformer_pipeline), with_indices=True)
 	print(dataset[0])
 	
+	dataset.to_json(outfile_path)
 			
 if __name__ == "__main__":
 	# logging.info('Run Started')
