@@ -9,12 +9,11 @@ longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arx
 
 def filter_by_token_length(input):
 	max_tokens = 16384
-	print("INPUT")
-	print(input)
 	txt = input['contents']
 	tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids[0]
 	token_length = len(tokens)
-	print(token_length)
+	if token_length <= max_tokens:
+		print("REMOVED ONE")
 	return token_length <= max_tokens
 	
 def sum_file(infile_path, outfile_path, device):
