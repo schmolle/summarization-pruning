@@ -30,10 +30,10 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer))
 	print(len(dataset))
 	dataset = dataset.select(range(1))
-	print(dataset)
+	print(dataset[0])
 	
 	dataset = dataset.map(lambda input: map_to_summary(input, longformer_pipeline))
-	print(dataset)
+	print(dataset[0])
 	
 			
 if __name__ == "__main__":
