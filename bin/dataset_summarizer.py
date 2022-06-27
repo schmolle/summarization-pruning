@@ -21,7 +21,7 @@ def sum_file(infile_path, outfile_path, device):
 	
 	print(longformer_tokenizer)
 	print(len(dataset))
-	dataset = dataset.filter(filter_by_token_length, {'tokenizer' : longformer_tokenizer})
+	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer))
 	print(len(dataset))
 			
 if __name__ == "__main__":
