@@ -9,7 +9,9 @@ def filter_by_token_length(input, longformer_tokenizer):
 	max_tokens = 16384
 	txt = input['contents']
 	tokens = longformer_tokenizer(txt, return_tensors="pt").input_ids[0]
-	return  len(tokens) <= max_tokens
+	token_length = len(tokens)
+	print(token_length)
+	return token_length <= max_tokens
 	
 def sum_file(infile_path, outfile_path, device):
 	# longformer_pipeline = Longformer_Impl_With_Pipeline.LongformerWithPipeline(device)
@@ -17,6 +19,9 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = load_dataset('json', data_files=infile_path)
 	dataset = dataset['train'][:100]
 	print(dataset)
+	print(len(dataset))
+	dataset = dataset.filter(filter_by_token_length)
+	print(len(dataset))
 			
 if __name__ == "__main__":
 	# logging.info('Run Started')
