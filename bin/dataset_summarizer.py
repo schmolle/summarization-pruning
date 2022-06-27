@@ -6,7 +6,9 @@ from transformers import LEDTokenizer
 from datasets import load_dataset
 
 
-def map_to_summary(input, pipeline):
+def map_to_summary(input, idx, pipeline):
+	if idx % 10 == 0:
+		print(idx)
 	new_contents = pipeline.summarize(input['contents'])
 	input['contents'] = new_contents[0]['summary_text']
 	return input
@@ -21,16 +23,13 @@ def filter_by_token_length(input, tokenizer):
 def sum_file(infile_path, outfile_path, device):
 	longformer_pipeline = Longformer_Impl_With_Pipeline.LongformerWithPipeline(device)
 	longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
+	print("Models loaded")
 	
 	dataset = load_dataset('json', data_files=infile_path)	
 	dataset = dataset['train'].select(range(100))
 	
-	print(longformer_tokenizer)
-	print(len(dataset))
-	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer))
-	print(len(dataset))
+	dataset = dataset.filter(with_indices=True, lambda input: filter_by_token_length(input, longformer_tokenizer))
 	dataset = dataset.select(range(1))
-	print(dataset[0])
 	
 	dataset = dataset.map(lambda input: map_to_summary(input, longformer_pipeline))
 	print(dataset[0])
