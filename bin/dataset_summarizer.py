@@ -29,7 +29,7 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = load_dataset('json', data_files=infile_path)	
 	dataset = dataset['train'].select(range(100))
 	
-	dataset = dataset.filter(lambda input: filter_by_token_length(input, idx, longformer_tokenizer))
+	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer))
 	dataset = dataset.select(range(15))
 	
 	dataset = dataset.map(lambda input, idx: map_to_summary(input, idx, longformer_pipeline), with_indices=True)
