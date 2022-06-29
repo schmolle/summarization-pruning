@@ -23,7 +23,6 @@ def filter_by_token_length(input, tokenizer):
 def sum_file(infile_path, outfile_path, device):
 	longformer_pipeline = Longformer_Impl_With_Pipeline.LongformerWithPipeline(device)
 	longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
-	print("Models loaded")
 	
 	dataset = load_dataset('json', data_files=infile_path)	
 	dataset = dataset['train']
@@ -61,7 +60,9 @@ if __name__ == "__main__":
 		outfile_path = os.path.join(outfile_path, filename)
 		print(f'Writing to file {outfile_path}')
 		
-		sum_file(infile_path, outfile_path, device)
-				
+		try:
+			sum_file(infile_path, outfile_path, device)
+		except Exception as e:
+			logging.error(e)		
 		
 	# logging.info('Run Finished')
