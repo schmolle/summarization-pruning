@@ -8,7 +8,7 @@ from datasets import load_dataset
 
 def map_to_summary(input, idx, pipeline):
 	if idx % 10000 == 0:
-		logging.info("%d indexed" % (idx,))
+		logging.info("%d summarized" % (idx,))
 	new_contents = pipeline.summarize(input['contents'])
 	input['contents'] = new_contents[0]['summary_text']
 	return input
