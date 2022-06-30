@@ -1,0 +1,1 @@
+qrel_file_path = '/home/jschmolzi/data/relevant_docs'
