@@ -3,9 +3,9 @@ from qrel_defs import qrel_file_path
 def filter_qrel_ids(inpath, outpath):
     with open(inpath, 'r') as infile, open(outpath, 'w') as outfile:
         for line in infile:
-            print(line)
-            print(line.split('\t'))
-            outfile.write(line)
+            line_array = line.split('\t')
+            qrel_id = line_array[2]
+            outfile.write(line + '\n')
             break
 
 if __name__ == "__main__":
