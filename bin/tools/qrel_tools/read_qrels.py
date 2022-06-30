@@ -6,4 +6,12 @@ def read_qrels():
         qrels = []
         for line in infile:
             qrels.append(line.strip())
-        print(qrels) 
+        return qrels
+    
+    
+if __name__ == '__main__':
+    out_arr = read_qrels()
+    print(out_arr[0])
+    print(out_arr[1])
+    print(out_arr[-1])
+    print(len(out_arr))
