@@ -4,8 +4,7 @@ def filter_qrel_ids(inpath, outpath):
     with open(inpath, 'r') as infile, open(outpath, 'w') as outfile:
         for line in infile:
             print(line)
-            print(line.split(' '))
-            print(line.split('\n'))
+            print(line.split('\t'))
             outfile.write(line)
             break
 
