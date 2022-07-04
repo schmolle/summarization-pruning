@@ -5,6 +5,7 @@ import sys
 from transformers import LEDTokenizer
 from datasets import load_dataset
 import time
+from tools.print_tools import blockPrint, enablePrint
 
 	
 def filter_by_token_length(input, tokenizer):
@@ -15,7 +16,7 @@ def filter_by_token_length(input, tokenizer):
 	token_length = len(tokens)
 	return (token_length <= max_tokens) and (token_length >= min_tokens)
 
-def check_prefix(input, idx, pipeline):
+def fill_is_prefix(input, idx, pipeline):
 	if idx % 1000 == 0:
 		logging.info("%d summarized" % (idx,))
 	summarized_array = []
@@ -40,11 +41,20 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset['train']
 	
 	logging.info("Filtering...")
+	blockPrint()
 	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer), num_proc=30)
+	enablePrint()
 	dataset = dataset.shuffle(seed=42).select(range(20000))
 	
 	new_column = [False] * len(dataset)
 	dataset = dataset.add_column("is_prefix", new_column)
+	dataset = pdataset.map(lambda input, idx: fill_is_prefix(input, idx, longformer_pipeline), with_indices=True)
+	
+	counter = 0
+	for is_prefix in dataset['is_prefix']:
+		if not is_prefix:
+			counter = counter + 1
+	logging.info("%d of %d are prefixes" % (counter, len(dataset)))
 	logging.info("DONE!!!")
 			
 if __name__ == "__main__":
