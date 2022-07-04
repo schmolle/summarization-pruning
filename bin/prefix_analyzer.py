@@ -45,7 +45,7 @@ def sum_file(infile_path, outfile_path, device):
 	logging.info("checking prefixes...")
 	new_column = [False] * len(dataset)
 	dataset = dataset.add_column("is_prefix", new_column)
-	dataset = pdataset.map(lambda input, idx: fill_is_prefix(input, idx, longformer_pipeline), with_indices=True)
+	dataset = dataset.map(lambda input, idx: fill_is_prefix(input, idx, longformer_pipeline), with_indices=True)
 	
 	counter = 0
 	for is_prefix in dataset['is_prefix']:
