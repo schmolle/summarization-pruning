@@ -5,8 +5,6 @@ import sys
 from transformers import LEDTokenizer
 from datasets import load_dataset
 import time
-from tools.print_tools import blockPrint, enablePrint
-
 	
 def filter_by_token_length(input, tokenizer):
 	max_tokens = 16384
@@ -41,11 +39,10 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset['train']
 	
 	logging.info("Filtering...")
-	blockPrint()
 	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer), num_proc=30)
-	enablePrint()
 	dataset = dataset.shuffle(seed=42).select(range(20000))
 	
+	logging.info("checking prefixes...")
 	new_column = [False] * len(dataset)
 	dataset = dataset.add_column("is_prefix", new_column)
 	dataset = pdataset.map(lambda input, idx: fill_is_prefix(input, idx, longformer_pipeline), with_indices=True)
