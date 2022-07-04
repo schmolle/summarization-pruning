@@ -42,7 +42,7 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset['train']
 	
 	logging.info("Filtering...")
-	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer, num_proc=30))
+	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer), num_proc=30)
 	print(dataset)
 	dataset = dataset.shuffle(seed=42).select(range(20000))
 	print(dataset)
