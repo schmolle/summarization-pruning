@@ -29,7 +29,7 @@ def fill_is_prefix(input, idx, pipeline):
 	summarized_array[2] = new_contents[0]['summary_text'].split('\n')[0]
 	if summarized_array[1].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[1]):
 		input["is_prefix"] = True
-	return True
+	return input
 	
 def sum_file(infile_path, outfile_path, device):
 	longformer_pipeline = Longformer_Impl_With_Pipeline.LongformerWithPipeline(device)
