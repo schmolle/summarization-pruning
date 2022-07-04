@@ -28,9 +28,7 @@ def summarize_without_map(input, idx, pipeline):
 	new_contents = pipeline.summarize(input['contents'], 150, 170)
 	summarized_array[2] = new_contents[0]['summary_text'].split('\n')
 	
-	if (summarized_array[1].startswith(summarized_array[0])) and 
-	   (summarized_array[2].startswith(summarized_array[0])) and 
-	   (summarized_array[2].startswith(summarized_array[1])):
+	if summarized_array[1].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[1]):
 		logging.log('ID %d true' % (idx,))
 	else:
 		logging.log('ID %d false' % (idx,))
