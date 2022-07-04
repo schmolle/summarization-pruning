@@ -15,24 +15,21 @@ def filter_by_token_length(input, tokenizer):
 	token_length = len(tokens)
 	return (token_length <= max_tokens) and (token_length >= min_tokens)
 
-def summarize_without_map(input, idx, pipeline):
+def check_prefix(input, idx, pipeline):
 	if idx % 1000 == 0:
 		logging.info("%d summarized" % (idx,))
 	summarized_array = []
 	
 	new_contents = pipeline.summarize(input['contents'], 50, 30)
-	summarized_array[0] = new_contents[0]['summary_text'].split('\n')
+	summarized_array[0] = new_contents[0]['summary_text'].split('\n')[0]
 	
 	new_contents = pipeline.summarize(input['contents'], 100, 80)
-	summarized_array[1] = new_contents[0]['summary_text'].split('\n')
+	summarized_array[1] = new_contents[0]['summary_text'].split('\n')[0]
 	
 	new_contents = pipeline.summarize(input['contents'], 150, 170)
-	summarized_array[2] = new_contents[0]['summary_text'].split('\n')
-	
+	summarized_array[2] = new_contents[0]['summary_text'].split('\n')[0]
 	if summarized_array[1].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[1]):
-		logging.log('ID %d true' % (idx,))
-	else:
-		logging.log('ID %d false' % (idx,))
+		input["is_prefix"] = True
 	return True
 	
 def sum_file(infile_path, outfile_path, device):
