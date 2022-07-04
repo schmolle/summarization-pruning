@@ -20,13 +20,22 @@ def fill_is_prefix(input, idx, pipeline):
 	summarized_array = []
 	
 	new_contents = pipeline.summarize(input['contents'], 50, 30)
-	summarized_array[0] = new_contents[0]['summary_text'].split('\n')[0]
+	summary = new_contents[0]['summary_text']
+	if summary.contains('\n'):
+		summary = summary.split('\n')[0]
+	summarized_array[0] = summary
 	
 	new_contents = pipeline.summarize(input['contents'], 100, 80)
-	summarized_array[1] = new_contents[0]['summary_text'].split('\n')[0]
+	summary = new_contents[0]['summary_text']
+	if summary.contains('\n'):
+		summary = summary.split('\n')[0]
+	summarized_array[1] = summary
 	
 	new_contents = pipeline.summarize(input['contents'], 150, 170)
-	summarized_array[2] = new_contents[0]['summary_text'].split('\n')[0]
+	summary = new_contents[0]['summary_text']
+	if summary.contains('\n'):
+		summary = summary.split('\n')[0]
+	summarized_array[2] = summary
 	if summarized_array[1].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[1]):
 		input["is_prefix"] = True
 	return input
