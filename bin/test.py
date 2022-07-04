@@ -10,3 +10,8 @@ if __name__ == '__main__':
     print(dataset)
     
     print(dataset['is_prefix'])
+    counter = 0
+    
+    for value in dataset['is_prefix']:
+        print("Line %d: %s" % (counter, value))
+        counter = counter + 1
