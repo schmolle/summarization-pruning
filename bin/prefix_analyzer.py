@@ -41,13 +41,10 @@ def sum_file(infile_path, outfile_path, device):
 	
 	logging.info("Filtering...")
 	dataset = dataset.filter(lambda input: filter_by_token_length(input, longformer_tokenizer), num_proc=30)
-	time.sleep(20)
-	print(dataset)
 	dataset = dataset.shuffle(seed=42).select(range(20000))
 	
 	new_column = [False] * len(dataset)
 	dataset = dataset.add_column("is_prefix", new_column)
-	print(dataset)
 	logging.info("DONE!!!")
 			
 if __name__ == "__main__":
