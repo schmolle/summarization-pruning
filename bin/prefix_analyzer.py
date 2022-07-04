@@ -7,11 +7,11 @@ from datasets import load_dataset
 	
 def filter_by_token_length(input, tokenizer):
 	max_tokens = 16384
-	mix_tokens = 300
+	min_tokens = 300
 	txt = input['contents']
 	tokens = tokenizer(txt, return_tensors="pt").input_ids[0]
 	token_length = len(tokens)
-	return token_length <= max_tokens
+	return (token_length <= max_tokens) and (token_length >= min_tokens)
 	
 def sum_file(infile_path, outfile_path, device):
 	longformer_tokenizer = LEDTokenizer.from_pretrained("allenai/led-large-16384-arxiv")
