@@ -31,7 +31,7 @@ def fill_is_prefix(input, idx, pipeline):
 		summary = summary.split('\n')[0]
 	summarized_array.append(summary)
 	
-	new_contents = pipeline.summarize(input['contents'], 150, 170)
+	new_contents = pipeline.summarize(input['contents'], 170, 150)
 	summary = new_contents[0]['summary_text']
 	if '\n' in summary:
 		summary = summary.split('\n')[0]
@@ -39,6 +39,11 @@ def fill_is_prefix(input, idx, pipeline):
 	
 	if summarized_array[1].startswith(summarized_array[0]) and summarized_array[2].startswith(summarized_array[1]):
 		input["is_prefix"] = True
+	else:
+		logging.info("#" * 20)
+		logging.info(" 30 -  50: %s" % (summarized_array[0]))
+		logging.info(" 50 - 100: %s" % (summarized_array[1]))
+		logging.info("150 - 170: %s" % (summarized_array[2]))
 	return input
 	
 def sum_file(infile_path, outfile_path, device):
@@ -59,7 +64,7 @@ def sum_file(infile_path, outfile_path, device):
 	
 	counter = 0
 	for is_prefix in dataset['is_prefix']:
-		if not is_prefix:
+		if is_prefix:
 			counter = counter + 1
 	logging.info("%d of %d are prefixes" % (counter, len(dataset)))
 	logging.info("DONE!!!")
