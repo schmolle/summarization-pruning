@@ -15,6 +15,7 @@ if __name__ == '__main__':
             with jsonlines.open(infile_path, 'r') as infile:
                 for line in infile:
                     id = line['id']
+                    print(id)
     outfile.close()
     
     
