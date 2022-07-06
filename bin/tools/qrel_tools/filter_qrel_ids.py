@@ -5,7 +5,7 @@ def filter_qrel_ids(inpath, outpath):
         for line in infile:
             line_array = line.split('\t')
             qrel_id = line_array[2]
-            outfile.write(qrel_id + '\n')
+            outfile.write(qrel_id.strip() + '\n')
 
 if __name__ == "__main__":
     inpath = '/home/jschmolzi/anserini/src/main/resources/topics-and-qrels/qrels.msmarco-doc.dev.txt'
