@@ -20,6 +20,8 @@ if __name__ == '__main__':
                     if id in qrel_arr:
                         outfile.write(json.dumps(line) + '\n')
                         counter = counter + 1
+                        if counter % 200 == 0:
+                            print("%d relevant docs found" % (counter,))
     outfile.close()
     print("%d relevant docs found" % (counter,))
     
