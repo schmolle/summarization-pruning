@@ -1,4 +1,4 @@
-from qrel_tools.qrel_defs import qrel_json_file_path
+from qrel_tools import qrel_defs
 from qrel_tools.read_qrels import read_qrels
 
 if __name__ == '__main__':
