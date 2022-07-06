@@ -1,5 +1,7 @@
-from tools.qrel_tools.qrel_defs import qrel_json_file_path
-from tools.qrel_tools.read_qrels import read_qrels
+from qrel_defs import qrel_json_file_path
+from read_qrels import read_qrels
+import os
+
 
 if __name__ == '__main__':
     indir = '/home/jschmolzi/anserini/collections/base'
