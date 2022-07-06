@@ -5,7 +5,9 @@ import os
 
 if __name__ == '__main__':
     indir = '/home/jschmolzi/anserini/collections/base'
-    print(os.listdir(indir))
+    for infile_path in os.listdir(indir):
+        if infile_path != 'relevant.json':
+            print(os.path.join(indir, infile_path))
     # qrel_arr = read_qrels()
     
     
