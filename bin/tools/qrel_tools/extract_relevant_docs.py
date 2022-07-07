@@ -8,7 +8,7 @@ import json
 if __name__ == '__main__':
     indir = '/home/jschmolzi/anserini/collections/base'
     relevant_path = 'relevant.json'
-    outfile = open(os.opath.join(indir, relevant_path), 'w')
+    outfile = open(os.path.join(indir, relevant_path), 'w')
     qrel_arr = read_qrels()
     counter = 0
     for infile_path in os.listdir(indir):
