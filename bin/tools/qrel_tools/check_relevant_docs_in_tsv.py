@@ -9,7 +9,6 @@ if __name__ == '__main__':
         for line in infile:
             id, url, title, body = line.split('\t')
             if id in qrel_arr:
-                outfile.write(json.dumps(line) + '\n')
                 counter = counter + 1
                 if counter % 200 == 0:
                     print("%d relevant docs found" % (counter,))
