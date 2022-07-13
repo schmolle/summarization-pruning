@@ -9,6 +9,6 @@ class LongformerWithPipeline():
 
     def summarize(self, txt, max_length=50, min_length=30, specific_length=True):
         if specific_length:
-            return self._Longformer(txt, max_length=max_length, min_length=min_length, do_sample=False)
+            return self._Longformer(txt, max_length=max_length, min_length=min_length, do_sample=False, truncation=True)
         else:
             return self._Longformer(txt, do_sample=False)
