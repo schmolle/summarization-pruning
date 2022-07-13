@@ -18,7 +18,7 @@ else:
 logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
 
 pegasus_activate = False
-bart_activate = True
+bart_activate = False
 longformer_activate = False
 bigbird_active = False
 

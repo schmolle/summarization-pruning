@@ -1,4 +1,5 @@
-from transformers import pipeline, PegasusTokenizer
+from transformers import pipeline, PegasusTokenizer, BartTokenizer
+from Bart_Impl_With_Pipeline import BartWithPipeline
 
 class PegasusWithPipeline():
     _Pegasus = None
@@ -9,7 +10,7 @@ class PegasusWithPipeline():
 
     def summarize(self, txt, max_length=130, min_length=30):
         return self._Pegasus(txt, max_length=max_length, min_length=min_length, do_sample=False, truncation=True)
-    
+
 if __name__ == "__main__":
     txt = """ New York (CNN)When Liana Barrientos was 23 years old, she got married in Westchester County, New York. A year later, she got married again in Westchester County, but to a different man and without divorcing her first husband.Only 18 days after that marriage, she got hitched yet again. Then, Barrientos declared "I do" five more times, sometimes only within two weeks of each other.
             In 2010, she married once more, this time in the Bronx. In an application for a marriage license, she stated it was her "first and only" marriage.
@@ -26,8 +27,21 @@ if __name__ == "__main__":
             Investigation Division. Seven of the men are from so-called "red-flagged" countries, including Egypt, Turkey, Georgia, Pakistan and Mali.
             Her eighth husband, Rashid Rajput, was deported in 2006 to his native Pakistan after an investigation by the Joint Terrorism Task Force.
             If convicted, Barrientos faces up to four years in prison.  Her next court appearance is scheduled for May 18.
-            """ 
+            """
+    txt = txt + '\n' + '''The tower is 324 metres (1,063 ft) tall, about the same height as an 81-storey building, and the tallest structure in Paris. Its base is square, measuring 125 metres (410 ft) on each side. During its construction, the Eiffel Tower surpassed the Washington Monument to become the tallest man-made structure in the world, a title it held for 41 years until the Chrysler Building in New York City was finished in 1930. It was the first structure to reach a height of 300 metres. Due to the addition of a broadcasting aerial at the top of the tower in 1957, it is now taller than the Chrysler Building by 5.2 metres (17 ft). Excluding transmitters, the Eiffel Tower is the second tallest free-standing structure in France after the Millau Viaduct.'''
     txt = txt.replace('\n', ' ')
-    pegasus = PegasusWithPipeline()
-    out_txt = pegasus.summarize(txt)
+    
+    #model_name = "google/pegasus-xsum"
+    #tokenizerP = PegasusTokenizer.from_pretrained(model_name)
+    #list = tokenizerP(txt, padding="longest", return_tensors="pt")
+    #print(len(list['input_ids'][0]))
+    #pegasus = PegasusWithPipeline()
+    #out_txt = pegasus.summarize(txt,300, 200)
+    #print(out_txt)
+    
+    model_name = "facebook/bart-large-cnn"
+    #tokenizer = BartTokenizer.from_pretrained(model_name)
+    #batch = tokenizer(txt, return_tensors="pt")
+    bart = BartWithPipeline()
+    out_txt = bart.summarize(txt,1000, 800)
     print(out_txt)
