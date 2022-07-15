@@ -18,6 +18,7 @@ def map_to_summary(input, idx, pipeline):
 		new_contents = pipeline.summarize(input['contents'], max_length=sumarize_length, min_length=sumarize_length)
 	except Exception as e:
 		logging.error(e)
+		logging.info('token_length: %s' % (token_length,))
 	input['contents'] = new_contents[0]['summary_text']
 	return input
 	
