@@ -12,11 +12,12 @@ def map_to_summary(input, idx, pipeline):
 	max_tokens = 16384
 	token_length = min(max_tokens, input['token_length'])
 	sumarize_length = token_length // 2
+	sumarize_length = min(512, sumarize_length)
 	if idx % 1000 == 0:
 		logging.info("%d summarized" % (idx,))
 	try:
 		if input['id'] != 'D1847863':
-			new_contents = pipeline.summarize(input['contents'], sumarize_length, sumarize_length - 10)
+			new_contents = pipeline.summarize(input['contents'], sumarize_length, sumarize_length)
 			input['contents'] = new_contents[0]['summary_text']
 	except Exception as e:
 		logging.error(e)
