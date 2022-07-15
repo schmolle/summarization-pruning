@@ -37,7 +37,7 @@ def add_token_length(input, tokenizer):
 	return input
 	
 def sum_file(infile_path, outfile_path, device):
-	longformer_pipeline = Bart_Impl_With_Pipeline.LongformerWithPipeline(device)
+	longformer_pipeline = Bart_Impl_With_Pipeline.BartWithPipeline(device)
 	longformer_tokenizer = BartTokenizer.from_pretrained("facebook/bart-large-cnn")
 	
 	# Loading dataset
