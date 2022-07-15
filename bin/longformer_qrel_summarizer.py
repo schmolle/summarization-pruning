@@ -51,7 +51,7 @@ def sum_file(infile_path, outfile_path, device):
 	logging.info("DONE!!!")
 			
 if __name__ == "__main__":
-	logging.info('Run Started')
+
 	infile_path = '/home/jschmolzi/anserini/collections/qrels/relevant.json'
 	outfile_path = '/home/jschmolzi/anserini/collections/qrels/longformer_qrels_base.json'
 	logfile = '/home/jschmolzi/logs/longformer.log'
@@ -64,6 +64,7 @@ if __name__ == "__main__":
 	print(f'Logging to file {logfile}')
 	print(f'Writing to file {outfile_path}')
 	
+	logging.info('Run Started')
 	try:
 		sum_file(infile_path, outfile_path, device)
 	except Exception as e:
