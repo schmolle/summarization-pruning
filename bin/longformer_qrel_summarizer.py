@@ -19,6 +19,10 @@ def map_to_summary(input, idx, pipeline):
 		if sumarize_length > 5:
 			new_contents = pipeline.summarize(input['contents'], sumarize_length, sumarize_length)
 			input['contents'] = new_contents[0]['summary_text']
+		else:
+			logging.info('token_length: %s' % (token_length,))
+			logging.info('contents: %s' % (input['contents'],))
+			logging.info('id: %s' % (input['id'],))
 	except Exception as e:
 		logging.error(e)
 		logging.info('token_length: %s' % (token_length,))
