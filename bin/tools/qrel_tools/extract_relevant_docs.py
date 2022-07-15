@@ -8,13 +8,13 @@ import json
 if __name__ == '__main__':
     indir = '/home/jschmolzi/anserini/collections/base'
     relevant_path = 'relevant.json'
-    outfile = open(os.path.join(indir, relevant_path), 'w')
+    outfile = open(os.path.join(indir, relevant_path), 'w', encoding='utf-8')
     qrel_arr = read_qrels()
     counter = 0
     for infile_path in os.listdir(indir):
         if infile_path != 'relevant.json':
             infile_path = os.path.join(indir, infile_path)
-            with jsonlines.open(infile_path, 'r') as infile:
+            with jsonlines.open(infile_path, 'r', encoding='utf-8') as infile:
                 for line in infile:
                     id = line['id']
                     if id in qrel_arr:
