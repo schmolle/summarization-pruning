@@ -19,6 +19,8 @@ def map_to_summary(input, idx, pipeline):
 	except Exception as e:
 		logging.error(e)
 		logging.info('token_length: %s' % (token_length,))
+		logging.info('contents: %s' % (input['contents'],))
+		logging.info('id: %s' % (input['id'],))
 	input['contents'] = new_contents[0]['summary_text']
 	return input
 	
