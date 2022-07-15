@@ -3,9 +3,9 @@ from transformers import pipeline
 class BartWithPipeline():
     _bart = None
 
-    def __init__(self):
+    def __init__(self, device=0):
         model_name = "facebook/bart-large-cnn"
-        self._Bart = pipeline("summarization", model=model_name, device=0)      
+        self._Bart = pipeline("summarization", model=model_name, device=device)      
 
     def summarize(self, txt, max_length=130, min_length=30):
         return self._Bart(txt, max_length=max_length, min_length=min_length, do_sample=False, truncation=True)
