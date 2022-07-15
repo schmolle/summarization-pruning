@@ -15,7 +15,7 @@ def map_to_summary(input, idx, pipeline):
 	if idx % 1000 == 0:
 		logging.info("%d summarized" % (idx,))
 	try:
-		new_contents = pipeline.summarize(input['contents'], sumarize_length, sumarize_length)
+		new_contents = pipeline.summarize(input['contents'], sumarize_length, sumarize_length - 10)
 	except Exception as e:
 		logging.error(e)
 		logging.info('token_length: %s' % (token_length,))
