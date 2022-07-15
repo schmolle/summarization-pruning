@@ -41,7 +41,7 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset.add_column("token_length", new_column)
 	
 	logging.info("Counting Tokens...")
-	dataset = dataset.map(lambda input: add_token_length(input, longformer_tokenizer), num_proc=30)
+	dataset = dataset.map(lambda input: add_token_length(input, longformer_tokenizer), num_proc=10)
 	
 	logging.info("Summarizing...")
 	dataset = dataset.map(lambda input, idx: map_to_summary(input, idx, longformer_pipeline), with_indices=True)
