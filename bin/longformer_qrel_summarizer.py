@@ -55,7 +55,8 @@ if __name__ == "__main__":
 	device = 0
 	
 	if os.path.isfile(logfile):
-		os.remove(logfile)		
+		with open(logfile, 'w') as f:
+			pass
 	logging.basicConfig(format='%(asctime)s %(message)s', filename=logfile, level=logging.DEBUG)
 	print(f'Logging to file {logfile}')
 	print(f'Writing to file {outfile_path}')

@@ -29,5 +29,5 @@ if __name__ == "__main__":
             """ 
     txt = txt.replace('\n', ' ')
     pegasus = PegasusWithPipeline()
-    out_txt = pegasus.summarize(txt)
+    out_txt = pegasus.summarize(txt, 50, 50)
     print(out_txt)
