@@ -15,13 +15,15 @@ def map_to_summary(input, idx, pipeline):
 	if idx % 1000 == 0:
 		logging.info("%d summarized" % (idx,))
 	try:
-		new_contents = pipeline.summarize(input['contents'], sumarize_length, sumarize_length - 10)
+		if input['id'] != 'D1847863':
+			new_contents = pipeline.summarize(input['contents'], sumarize_length, sumarize_length - 10)
+			input['contents'] = new_contents[0]['summary_text']
 	except Exception as e:
 		logging.error(e)
 		logging.info('token_length: %s' % (token_length,))
 		logging.info('contents: %s' % (input['contents'],))
 		logging.info('id: %s' % (input['id'],))
-	input['contents'] = new_contents[0]['summary_text']
+		raise e	
 	return input
 	
 def add_token_length(input, tokenizer):
