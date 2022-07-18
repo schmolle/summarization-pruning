@@ -26,8 +26,13 @@ if __name__ == "__main__":
             Investigation Division. Seven of the men are from so-called "red-flagged" countries, including Egypt, Turkey, Georgia, Pakistan and Mali.
             Her eighth husband, Rashid Rajput, was deported in 2006 to his native Pakistan after an investigation by the Joint Terrorism Task Force.
             If convicted, Barrientos faces up to four years in prison.  Her next court appearance is scheduled for May 18.
+            New York (CNN)When Liana Barrientos was 23 years old, she got married in Westchester County, New York. A year later, she got married again in Westchester County, but to a different man and without divorcing her first husband.Only 18 days after that marriage, she got hitched yet again. Then, Barrientos declared "I do" five more times, sometimes only within two weeks of each other.
+            In 2010, she married once more, this time in the Bronx. In an application for a marriage license, she stated it was her "first and only" marriage.
+            Barrientos, now 39, is facing two criminal counts of "offering a false instrument for filing in the first degree," referring to her false statements on the
+            2010 marriage license application, according to court documents.
+            Prosecutors said the marriages were part of an immigration scam.
             """ 
     txt = txt.replace('\n', ' ')
     pegasus = PegasusWithPipeline()
-    out_txt = pegasus.summarize(txt, 50, 50)
+    out_txt = pegasus.summarize(txt, 800, 800)
     print(out_txt)
