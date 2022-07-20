@@ -20,5 +20,5 @@ if __name__ == "__main__":
     for id in range(1, nr_inputs):
         qrel_ids.append(sys.argv[id])
     print(qrel_ids)
-    find_line_tsv(infile, qrel_id)
+    find_line_tsv(infile, qrel_ids)
         
