@@ -14,6 +14,7 @@ def find_line_tsv(in_path, qrel_ids):
                 print("title: %s" % (title,))
                 print("body: %s" % (body))
 if __name__ == "__main__":
+    infile = '/home/jschmolzi/anserini/collections/msmarco-doc/msmarco-docs.tsv'
     nr_inputs = len(sys.argv)
     print("Looking for %s lines" % (nr_inputs-1,))
     qrel_ids = []
