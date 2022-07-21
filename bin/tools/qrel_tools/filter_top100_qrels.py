@@ -3,6 +3,7 @@ from qrel_defs import qrel_file_path
 def filter_top100_qrels(inpath):
     top10_qrels = set()
     top1_qrels = set()
+    counter = 0
     with open(inpath, 'r') as infile:
         for line in infile:
             line_array = line.split(' ')
@@ -13,6 +14,7 @@ def filter_top100_qrels(inpath):
                 top10_qrels.add(dok_id)
                 if dok_rank == 1:
                     top1_qrels.add(dok_id)
+                    counter = counter + 1
     print("top1  qrels: %s" % (len(top1_qrels),))           
     print("top10 qrels: %s" % (len(top10_qrels),))
     
