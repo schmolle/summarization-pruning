@@ -7,7 +7,7 @@ def filter_top100_qrels(inpath):
             line_array = line.split(' ')
             dok_id = line_array[2]
             dok_rank = line_array[3]
-            set.add(dok_id)
+            qrels.add(dok_id)
             break
 
 if __name__ == "__main__":
