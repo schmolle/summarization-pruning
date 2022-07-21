@@ -9,7 +9,8 @@ def filter_top100_qrels(inpath):
             dok_rank = line_array[3]
             qrels.add(dok_id)
             break
-
+    print(qrels)
+    
 if __name__ == "__main__":
     inpath = '/home/jschmolzi/data/msmarco-docdev-top100'
     filter_top100_qrels(inpath)
