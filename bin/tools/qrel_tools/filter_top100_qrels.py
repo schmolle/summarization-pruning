@@ -17,7 +17,7 @@ def filter_top100_qrels(inpath):
                     counter = counter + 1
     print("top1  qrels: %s" % (len(top1_qrels),))           
     print("top10 qrels: %s" % (len(top10_qrels),))
-    
+    print(counter)
 
 if __name__ == "__main__":
     inpath = '/home/jschmolzi/data/msmarco-docdev-top100'
