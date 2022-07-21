@@ -1,20 +1,22 @@
 from qrel_defs import qrel_file_path
 
 def filter_top100_qrels(inpath):
-    qrels = set()
+    top10_qrels = set()
+    top1_qrels = set()
     with open(inpath, 'r') as infile:
         for line in infile:
-            print(line)
             line_array = line.split(' ')
-            print(line_array)
-            dok_id = line_array[2]
-            print(dok_id)
             dok_rank = line_array[3]
-            print(dok_rank)
-            qrels.add(dok_id)
-            break
-    print(qrels)
+            dok_rank = int(dok_rank)
+            if dok_rank <= 10:
+                dok_id = line_array[2]
+                top10_qrels.add(dok_id)
+                if dok_rank == 1:
+                    top1_qrels.add(dok_id)
+    print("top1  qrels: %s" % (len(top1_qrels),))           
+    print("top10 qrels: %s" % (len(top10_qrels),))
     
+
 if __name__ == "__main__":
     inpath = '/home/jschmolzi/data/msmarco-docdev-top100'
     filter_top100_qrels(inpath)
