@@ -21,7 +21,7 @@ def filter_top100_qrels(inpath):
     print(counter)
     old_qrels = read_qrels()
     old_qrels = set(old_qrels)
-    diff = top1_qrels.difference(old_qrels)
+    diff = top10_qrels.intersection(old_qrels)
     print(diff)
     print(len(diff))
     
