@@ -1,4 +1,5 @@
 from qrel_defs import qrel_file_path
+from read_qrels import read_qrels
 
 def filter_top100_qrels(inpath):
     top10_qrels = set()
@@ -18,7 +19,13 @@ def filter_top100_qrels(inpath):
     print("top1  qrels: %s" % (len(top1_qrels),))           
     print("top10 qrels: %s" % (len(top10_qrels),))
     print(counter)
-
+    old_qrels = read_qrels()
+    old_qrels = set(old_qrels)
+    diff = top1_qrels.difference(old_qrels)
+    print(diff)
+    print(len(diff))
+    
+    
 if __name__ == "__main__":
     inpath = '/home/jschmolzi/data/msmarco-docdev-top100'
     filter_top100_qrels(inpath)
