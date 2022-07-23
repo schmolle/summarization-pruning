@@ -10,7 +10,7 @@ def filter_top100_qrels(inpath):
             line_array = line.split(' ')
             dok_rank = line_array[3]
             dok_rank = int(dok_rank)
-            if dok_rank <= 10:
+            if dok_rank <= 100:
                 dok_id = line_array[2]
                 top10_qrels.add(dok_id)
                 if dok_rank == 1:
