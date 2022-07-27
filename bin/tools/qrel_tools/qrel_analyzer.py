@@ -16,8 +16,6 @@ def extract_lengths(tokenizer, tokenizer_id):
         tokens = tokenizer(content, return_tensors="pt").input_ids[0]
         token_length = len(tokens)
         content_lengths.append(token_length)
-    print(len(content_lengths))
-    print(content_lengths[5:20])
     outfile_path = os.path.join(outfile_base_path, tokenizer_id)
     with open(outfile_path, 'w+b') as outfile:
         pickle.dump(content_lengths, outfile)
@@ -39,5 +37,3 @@ if __name__ == "__main__":
     else:
         with open('/home/jschmolzi/data/bart', 'rb') as infile:
             arr = pickle.load(infile)
-            print(len(arr))
-            print(arr[5:20])
