@@ -40,7 +40,7 @@ if __name__ == "__main__":
             arr = pickle.load(infile)
             min = np.min(arr)
             max = np.max(arr)
-            mean = np.mead(arr)
+            mean = np.mean(arr)
             avg = np.average(arr)
             
             print("min: %s" % (min,))
