@@ -2,7 +2,7 @@ from qrel_defs import qrel10_file_path
 
 def read_qrels():
     inpath = qrel10_file_path
-    with open(qrel_file_path, 'r') as infile:
+    with open(inpath, 'r') as infile:
         qrels = []
         for line in infile:
             qrels.append(line.strip())
