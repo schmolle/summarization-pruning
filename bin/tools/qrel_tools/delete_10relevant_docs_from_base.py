@@ -1,5 +1,5 @@
 from qrel_defs import qrel_json_file_path
-from read_qrels import read_qrels
+from read_10qrels import read_qrels
 import os
 import jsonlines
 import json
