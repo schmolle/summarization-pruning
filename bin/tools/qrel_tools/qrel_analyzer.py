@@ -2,7 +2,8 @@ import sys
 from datasets import load_dataset
 import pickle
 import os
-from pip._vendor.distlib._backport.tarfile import _FileInFile
+import numpy as np
+
 
 def extract_lengths(tokenizer, tokenizer_id):
     infile_path = '/home/jschmolzi/anserini/collections/qrels/10_relevant.json'
@@ -37,3 +38,12 @@ if __name__ == "__main__":
     else:
         with open('/home/jschmolzi/data/bart', 'rb') as infile:
             arr = pickle.load(infile)
+            min = np.min(arr)
+            max = np.max(arr)
+            mean = np.mead(arr)
+            avg = np.average(arr)
+            
+            print("min: %s" % (min,))
+            print("max: %s" % (max,))
+            print("mean: %s" % (mean,))
+            print("avg: %s" % (avg,))
