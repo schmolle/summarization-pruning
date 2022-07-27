@@ -6,7 +6,9 @@ def extract_lengths():
     infile_path = '/home/jschmolzi/anserini/collections/qrels/relevant.json'
     dataset = load_dataset('json', data_files=infile_path)    
     dataset = dataset['train']
-    print(dataset['contents'])
+    content = dataset['contents']
+    print(type(content))
+    print(len(content))
     
 if __name__ == "__main__":
     if len(sys.argv) > 1:
