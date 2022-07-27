@@ -1,5 +1,5 @@
-from qrel_defs import qrel_file_path
-from read_qrels import read_qrels, qrel10_file_path
+from qrel_defs import qrel10_file_path
+from read_qrels import read_qrels
 
 def filter_top100_qrels(inpath):
     top10_qrels = set()
