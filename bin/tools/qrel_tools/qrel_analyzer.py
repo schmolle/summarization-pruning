@@ -6,7 +6,7 @@ from pip._vendor.distlib._backport.tarfile import _FileInFile
 
 def extract_lengths(tokenizer, tokenizer_id):
     infile_path = '/home/jschmolzi/anserini/collections/qrels/10_relevant.json'
-    outfile_base_path = '/home/jschmolz/data'
+    outfile_base_path = '/home/jschmolzi/data'
     dataset = load_dataset('json', data_files=infile_path)    
     dataset = dataset['train']
     contents = dataset['contents']
