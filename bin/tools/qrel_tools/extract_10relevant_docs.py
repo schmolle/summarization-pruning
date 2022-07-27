@@ -14,7 +14,7 @@ if __name__ == '__main__':
     for infile_path in os.listdir(indir):
         if infile_path != 'relevant.json':
             infile_path = os.path.join(indir, infile_path)
-            with jsonlines.open(infile_path, 'r', encoding='utf-8') as infile:
+            with jsonlines.open(infile_path, 'r') as infile:
                 for line in infile:
                     id = line['id']
                     if id in qrel_arr:
