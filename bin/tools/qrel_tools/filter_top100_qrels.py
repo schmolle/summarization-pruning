@@ -1,5 +1,5 @@
 from qrel_defs import qrel_file_path
-from read_qrels import read_qrels
+from read_qrels import read_qrels, qrel10_file_path
 
 def filter_top100_qrels(inpath):
     top10_qrels = set()
@@ -25,7 +25,14 @@ def filter_top100_qrels(inpath):
     old_qrels = read_qrels()
     old_qrels = set(old_qrels)
     all = top10_qrels.union(old_qrels)
+    counter = 0
     print(len(all))
+    with open(qrel10_file_path, 'w+'):
+        for qrel in all:
+            outfile.write(qrel_id.strip() + '\n')
+            counter = counter + 1
+    print("wrote %d lines" % (counter,))
+        
     
     
 if __name__ == "__main__":
