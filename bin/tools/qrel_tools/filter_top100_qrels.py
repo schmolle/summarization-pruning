@@ -27,7 +27,7 @@ def filter_top100_qrels(inpath):
     all = top10_qrels.union(old_qrels)
     counter = 0
     print(len(all))
-    with open(qrel10_file_path, 'w+'):
+    with open(qrel10_file_path, 'w+') as outfile:
         for qrel in all:
             outfile.write(qrel_id.strip() + '\n')
             counter = counter + 1
