@@ -3,6 +3,7 @@ from datasets import load_dataset
 import pickle
 import os
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def extract_lengths(tokenizer, tokenizer_id):
@@ -42,7 +43,8 @@ if __name__ == "__main__":
             max = np.max(arr)
             mean = np.mean(arr)
             avg = np.average(arr)
-            
+            plt.hist(arr);
+            plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
             print("min: %s" % (min,))
             print("max: %s" % (max,))
             print("mean: %s" % (mean,))
