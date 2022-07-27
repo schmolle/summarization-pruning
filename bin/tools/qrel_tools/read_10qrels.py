@@ -1,7 +1,7 @@
 from qrel_defs import qrel10_file_path
 
 def read_qrels():
-    inpath = qrel_file_path
+    inpath = qrel10_file_path
     with open(qrel_file_path, 'r') as infile:
         qrels = []
         for line in infile:
