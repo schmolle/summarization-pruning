@@ -19,7 +19,7 @@ def extract_lengths(tokenizer, tokenizer_id):
     print(len(content_lengths))
     print(content_lengths[5:20])
     outfile_path = os.path.join(outfile_base_path, tokenizer_id)
-    with open(outfile_path, 'wb+') as outfile:
+    with open(outfile_path, 'w+b') as outfile:
         pickle.dump(content_lengths, outfile)
         
         
