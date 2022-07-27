@@ -3,7 +3,7 @@ from transformers import LEDTokenizer
 from datasets import load_dataset
 
 def extract_lengths():
-    infile_path = '/home/jschmolzi/anserini/collections/qrels/relevant.json'
+    infile_path = '/home/jschmolzi/anserini/collections/qrels/10_relevant.json'
     dataset = load_dataset('json', data_files=infile_path)    
     dataset = dataset['train']
     content = dataset['contents']
