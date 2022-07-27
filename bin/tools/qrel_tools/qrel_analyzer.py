@@ -37,7 +37,7 @@ if __name__ == "__main__":
         else:
             print("Usage: 1=longformer, 2=bart, 3=pegasus")
     else:
-        with open('/home/jschmolz/data/bart') as infile:
+        with open('/home/jschmolz/data/bart', 'r') as infile:
             arr = pickle.load(infile)
             print(len(arr))
             print(arr[5:20])
