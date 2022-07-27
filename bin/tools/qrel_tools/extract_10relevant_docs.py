@@ -1,5 +1,5 @@
 from qrel_defs import qrel_json_file_path
-from read_10qrels import read_10qrels
+from read_10qrels import read_qrels
 import os
 import jsonlines
 import json
@@ -9,7 +9,7 @@ if __name__ == '__main__':
     indir = '/home/jschmolzi/anserini/collections/base'
     relevant_path = 'relevant.json'
     outfile = open(os.path.join(indir, relevant_path), 'w', encoding='utf-8')
-    qrel_arr = read_10qrels()
+    qrel_arr = read_qrels()
     counter = 0
     for infile_path in os.listdir(indir):
         if infile_path != 'relevant.json':
