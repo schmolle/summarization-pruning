@@ -29,7 +29,7 @@ def filter_top100_qrels(inpath):
     print(len(all))
     with open(qrel10_file_path, 'w+') as outfile:
         for qrel in all:
-            outfile.write(qrel_id.strip() + '\n')
+            outfile.write(qrel.strip() + '\n')
             counter = counter + 1
     print("wrote %d lines" % (counter,))
         
