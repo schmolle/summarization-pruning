@@ -10,8 +10,6 @@ def extract_lengths(tokenizer, tokenizer_id):
     dataset = load_dataset('json', data_files=infile_path)    
     dataset = dataset['train']
     contents = dataset['contents']
-    print(type(content))
-    print(len(content))
     content_lengths = []
     
     for content in contents:
