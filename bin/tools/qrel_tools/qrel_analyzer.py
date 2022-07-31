@@ -24,6 +24,7 @@ def extract_lengths(tokenizer, tokenizer_id):
         
 def clear_long_entries(in_arr, max):
         in_arr = [np.min([max, x]) for x in in_arr]
+        return in_arr
         
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -52,7 +53,7 @@ if __name__ == "__main__":
             print("mean: %s" % (mean,))
             print("avg: %s" % (avg,))
             
-            clear_long_entries(arr, 20000)
+            arr = clear_long_entries(arr, 20000)
             
             min = np.min(arr)
             max = np.max(arr)
