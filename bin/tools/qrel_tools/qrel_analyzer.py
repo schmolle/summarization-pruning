@@ -65,6 +65,7 @@ def create_overview(model_name):
             print("mean: %s" % (mean,))
             print("avg: %s" % (avg,))
             print("longer_20000: %s" % (longer_20000,))
+            plot.clf()
             
             
 if __name__ == "__main__":
