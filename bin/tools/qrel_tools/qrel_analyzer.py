@@ -43,7 +43,7 @@ if __name__ == "__main__":
             max = np.max(arr)
             mean = np.mean(arr)
             avg = np.average(arr)
-            plt.hist(arr);
+            plt.hist(arr, bins='auto');
             plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
             print("min: %s" % (min,))
             print("max: %s" % (max,))
