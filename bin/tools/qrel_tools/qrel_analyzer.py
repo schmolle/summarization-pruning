@@ -22,6 +22,8 @@ def extract_lengths(tokenizer, tokenizer_id):
     with open(outfile_path, 'w+b') as outfile:
         pickle.dump(content_lengths, outfile)
         
+def clear_long_entries(in_arr, max):
+        [min(max, x) for x in in_arr]
         
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -43,8 +45,21 @@ if __name__ == "__main__":
             max = np.max(arr)
             mean = np.mean(arr)
             avg = np.average(arr)
-            plt.hist(arr, bins='auto');
-            plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
+            # plt.hist(arr, bins='auto');
+            # plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
+            print("min: %s" % (min,))
+            print("max: %s" % (max,))
+            print("mean: %s" % (mean,))
+            print("avg: %s" % (avg,))
+            
+            clear_long_entries(arr, 20.000)
+            
+            min = np.min(arr)
+            max = np.max(arr)
+            mean = np.mean(arr)
+            avg = np.average(arr)
+            # plt.hist(arr, bins='auto');
+            # plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
             print("min: %s" % (min,))
             print("max: %s" % (max,))
             print("mean: %s" % (mean,))
