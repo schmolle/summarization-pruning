@@ -52,7 +52,7 @@ if __name__ == "__main__":
             print("mean: %s" % (mean,))
             print("avg: %s" % (avg,))
             
-            clear_long_entries(arr, 20.000)
+            clear_long_entries(arr, 20000)
             
             min = np.min(arr)
             max = np.max(arr)
