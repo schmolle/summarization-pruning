@@ -61,8 +61,8 @@ if __name__ == "__main__":
             avg = np.average(arr)
             
             plt.hist(arr, bins='auto');
-            plt.title('#Tokens of %d qrels' % (len(arr),))
-            plt.xlabel('#Tokens')
+            plt.title('Tokens of %d relevant Docs' % (len(arr),))
+            plt.xlabel('Tokens')
             
             plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
             print("min: %s" % (min,))
