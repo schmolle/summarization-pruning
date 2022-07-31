@@ -62,7 +62,7 @@ if __name__ == "__main__":
             plt.hist(arr, bins='auto');
             plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
             plt.title('#Tokens of %d qrels' % (len(arr),))
-            plt.xlabel(''Tokens')
+            plt.xlabel('#Tokens')
             print("min: %s" % (min,))
             print("max: %s" % (max,))
             print("mean: %s" % (mean,))
