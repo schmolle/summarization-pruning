@@ -25,6 +25,13 @@ def extract_lengths(tokenizer, tokenizer_id):
 def clear_long_entries(in_arr, max):
         in_arr = [np.min([max, x]) for x in in_arr]
         return in_arr
+    
+def get_number_of_occurences(in_arr, value):
+    counter = 0
+    for x in in_arr:
+        if x == value:
+            counter = counter + 1
+    return counter
 
 def create_overview(model_name):
     print("Creating %s overview" % (model_name,))
@@ -46,6 +53,7 @@ def create_overview(model_name):
             max = np.max(arr)
             mean = np.mean(arr)
             avg = np.average(arr)
+            longer_20000 = get_number_of_occurences(arr, 20000)
             
             plt.hist(arr, bins='auto');
             plt.title('%s tokens of %d relevant Docs' % (model_name, len(arr)))
@@ -56,6 +64,7 @@ def create_overview(model_name):
             print("max: %s" % (max,))
             print("mean: %s" % (mean,))
             print("avg: %s" % (avg,))
+            print("longer_20000: %s" % (longer_20000,))
             
             
 if __name__ == "__main__":
