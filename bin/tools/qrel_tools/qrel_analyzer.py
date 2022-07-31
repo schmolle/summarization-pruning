@@ -25,7 +25,39 @@ def extract_lengths(tokenizer, tokenizer_id):
 def clear_long_entries(in_arr, max):
         in_arr = [np.min([max, x]) for x in in_arr]
         return in_arr
-        
+
+def create_overview(model_name):
+    print("Creating %s overview" % (model_name,))
+    with open(os.path.join('/home/jschmolzi/data', model_name), 'rb') as infile:
+            arr = pickle.load(infile)
+            min = np.min(arr)
+            max = np.max(arr)
+            mean = np.mean(arr)
+            avg = np.average(arr)
+
+            print("min: %s" % (min,))
+            print("max: %s" % (max,))
+            print("mean: %s" % (mean,))
+            print("avg: %s" % (avg,))
+            
+            arr = clear_long_entries(arr, 20000)
+            
+            min = np.min(arr)
+            max = np.max(arr)
+            mean = np.mean(arr)
+            avg = np.average(arr)
+            
+            plt.hist(arr, bins='auto');
+            plt.title('%s tokens of %d relevant Docs' % (model_name, len(arr)))
+            plt.xlabel('Tokens')
+            
+            plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/%s_plot.png' % (model_name,))
+            print("min: %s" % (min,))
+            print("max: %s" % (max,))
+            print("mean: %s" % (mean,))
+            print("avg: %s" % (avg,))
+            
+            
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         if sys.argv[1] == '1':
@@ -40,32 +72,6 @@ if __name__ == "__main__":
         else:
             print("Usage: 1=longformer, 2=bart, 3=pegasus")
     else:
-        with open('/home/jschmolzi/data/bart', 'rb') as infile:
-            arr = pickle.load(infile)
-            min = np.min(arr)
-            max = np.max(arr)
-            mean = np.mean(arr)
-            avg = np.average(arr)
-            # plt.hist(arr, bins='auto');
-            # plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
-            print("min: %s" % (min,))
-            print("max: %s" % (max,))
-            print("mean: %s" % (mean,))
-            print("avg: %s" % (avg,))
-            
-            arr = clear_long_entries(arr, 20000)
-            
-            min = np.min(arr)
-            max = np.max(arr)
-            mean = np.mean(arr)
-            avg = np.average(arr)
-            
-            plt.hist(arr, bins='auto');
-            plt.title('Tokens of %d relevant Docs' % (len(arr),))
-            plt.xlabel('Tokens')
-            
-            plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/plot.png')
-            print("min: %s" % (min,))
-            print("max: %s" % (max,))
-            print("mean: %s" % (mean,))
-            print("avg: %s" % (avg,))
+        create_overview('bart')
+        create_overview('pegasus')
+        create_overview('longformer')
