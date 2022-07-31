@@ -23,7 +23,7 @@ def extract_lengths(tokenizer, tokenizer_id):
         pickle.dump(content_lengths, outfile)
         
 def clear_long_entries(in_arr, max):
-        [np.min(max, x) for x in in_arr]
+        in_arr = [np.min(max, x) for x in in_arr]
         
 if __name__ == "__main__":
     if len(sys.argv) > 1:
