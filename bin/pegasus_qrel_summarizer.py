@@ -37,8 +37,8 @@ def add_token_length(input, tokenizer):
 	return input
 	
 def sum_file(infile_path, outfile_path, device):
-	longformer_pipeline = Pegasus_Impl_With_Pipeline.PegasusWithPipeline(device)
-	longformer_tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
+	pipeline = Pegasus_Impl_With_Pipeline.PegasusWithPipeline(device)
+	tokenizer = PegasusTokenizer.from_pretrained("google/pegasus-xsum")
 	
 	# Loading dataset
 	dataset = load_dataset('json', data_files=infile_path)	
@@ -49,10 +49,10 @@ def sum_file(infile_path, outfile_path, device):
 	dataset = dataset.add_column("token_length", new_column)
 	
 	logging.info("Counting Tokens...")
-	dataset = dataset.map(lambda input: add_token_length(input, longformer_tokenizer))
+	dataset = dataset.map(lambda input: add_token_length(input, tokenizer))
 	
 	logging.info("Summarizing...")
-	dataset = dataset.map(lambda input, idx: map_to_summary(input, idx, longformer_pipeline), with_indices=True)
+	dataset = dataset.map(lambda input, idx: map_to_summary(input, idx, pipeline), with_indices=True)
 	
 	logging.info("Storing...")
 	dataset.to_json(outfile_path)
