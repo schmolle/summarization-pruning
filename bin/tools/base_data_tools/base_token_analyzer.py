@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 
 def extract_lengths(tokenizer, tokenizer_id):
-    indir_path = '/home/jschmolz/anserini/collections/base'
+    indir_path = '/home/jschmolzi/anserini/collections/base'
     outfile_base_path = '/home/jschmolzi/data'
     content_lengths = []
     for file_name in os.listdir(indir_path):
