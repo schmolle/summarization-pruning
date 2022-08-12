@@ -62,8 +62,8 @@ def sum_file(infile_path, outfile_path, device):
 			
 if __name__ == "__main__":
 
-	infile_path = '/home/jschmolzi/anserini/collections/qrels/relevant.json'
-	outfile_path = '/home/jschmolzi/anserini/collections/qrels/longformer_qrels_base.json'
+	infile_path = '/home/jschmolzi/anserini/collections/qrels/10_relevant.json'
+	outfile_path = '/home/jschmolzi/anserini/collections/qrels/longformer10_qrels_base.json'
 	logfile = '/home/jschmolzi/logs/longformer.log'
 	device = 0
 	
