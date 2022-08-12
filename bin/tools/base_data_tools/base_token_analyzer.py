@@ -17,7 +17,7 @@ def extract_lengths(tokenizer, tokenizer_id):
         contents = dataset['contents']
         
         for content in contents:
-            tokens = tokenizer(content, return_tensors="pt").input_ids[0]
+            tokens = content.split()
             token_length = len(tokens)
             content_lengths.append(token_length)
     outfile_path = os.path.join(outfile_base_path, tokenizer_id)
@@ -35,6 +35,26 @@ def get_number_of_occurences(in_arr, value):
             counter = counter + 1
     return counter
 
+
+def extract_lengths_split(tokenizer_id):
+    indir_path = '/home/jschmolzi/anserini/collections/base'
+    outfile_base_path = '/home/jschmolzi/data'
+    content_lengths = []
+    for file_name in os.listdir(indir_path):
+        infile_path = os.path.join(indir_path, file_name)
+        dataset = load_dataset('json', data_files=infile_path)    
+        dataset = dataset['train']
+        contents = dataset['contents']
+        
+        for content in contents:
+            tokens = tokenizer(content, return_tensors="pt").input_ids[0]
+            token_length = len(tokens)
+            content_lengths.append(token_length)
+    outfile_path = os.path.join(outfile_base_path, tokenizer_id)
+    with open(outfile_path, 'w+b') as outfile:
+        pickle.dump(content_lengths, outfile)
+        
+        
 def create_overview(model_name):
     print("Creating %s overview" % (model_name,))
     with open(os.path.join('/home/jschmolzi/data', model_name), 'rb') as infile:
@@ -81,9 +101,12 @@ if __name__ == "__main__":
         elif sys.argv[1] == '3':
             from transformers import PegasusTokenizer
             extract_lengths(PegasusTokenizer.from_pretrained("google/pegasus-xsum"), 'base_pegasus')
+        elif sys.argv[1] == '4':
+            extract_lengths_split('base_split')
         else:
             print("Usage: 1=longformer, 2=bart, 3=pegasus")
     else:
         create_overview('base_bart')
         create_overview('base_pegasus')
         create_overview('base_longformer')
+        create_overview('base_split')
