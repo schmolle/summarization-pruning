@@ -17,7 +17,7 @@ def extract_lengths(tokenizer, tokenizer_id):
         contents = dataset['contents']
         
         for content in contents:
-            tokens = content.split()
+            tokens = tokenizer(content, return_tensors="pt").input_ids[0]
             token_length = len(tokens)
             content_lengths.append(token_length)
     outfile_path = os.path.join(outfile_base_path, tokenizer_id)
@@ -47,7 +47,7 @@ def extract_lengths_split(tokenizer_id):
         contents = dataset['contents']
         
         for content in contents:
-            tokens = tokenizer(content, return_tensors="pt").input_ids[0]
+            tokens = content.split()
             token_length = len(tokens)
             content_lengths.append(token_length)
     outfile_path = os.path.join(outfile_base_path, tokenizer_id)
