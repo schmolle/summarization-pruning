@@ -19,7 +19,7 @@ def absolute_prod(tokens, model):
             if len(split_contentes) < tokens:
                 continue
             else:
-                line['contents'] = (' ').join(split_contentes[0:tokens-1])
+                line['contents'] = (' ').join(split_contentes[0:tokens])
                 print(line['contents'])
             break
     
