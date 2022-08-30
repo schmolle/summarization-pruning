@@ -13,7 +13,8 @@ def absolute_prod(tokens, model):
     
     print(inpath)
     outpath = destination_path
-    outfile = open(destination_path, 'w', encoding='utf-8')
+    print("writing to", outpath)
+    outfile = open(outpath, 'w', encoding='utf-8')
     with jsonlines.open(inpath, 'r') as infile:
         for line in infile:
             split_contentes = line['contents'].split()
