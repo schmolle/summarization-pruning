@@ -15,7 +15,7 @@ def absolute_prod(tokens, model):
     
     with jsonlines.open(inpath, 'r') as infile:
         for line in infile:
-            print(line)
+            print(line['contents'])
             break
     
     
