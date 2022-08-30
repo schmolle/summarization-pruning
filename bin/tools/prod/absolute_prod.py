@@ -21,7 +21,8 @@ def absolute_prod(tokens, model):
                 continue
             else:
                 line['contents'] = (' ').join(split_contentes[0:tokens])
-                outfile.write(json.dumps(line) + '\n')    
+                outfile.write(json.dumps(line) + '\n')
+            break
     outfile.close()
     
     
