@@ -12,9 +12,9 @@ def absolute_prod(tokens, model):
     else:
         inpath = longformer_path
     
-    print(inpath)
+    print("infile:", inpath)
     outpath = destination_path
-    print("writing to", outpath)
+    print("outfile:", outpath)
     outfile = open(outpath, 'w', encoding='utf-8')
     with jsonlines.open(inpath, 'r') as infile:
         for line in infile:
