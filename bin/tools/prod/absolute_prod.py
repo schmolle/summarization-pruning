@@ -15,7 +15,12 @@ def absolute_prod(tokens, model):
     
     with jsonlines.open(inpath, 'r') as infile:
         for line in infile:
-            print(line['contents'])
+            split_contentes = line['contents'].split()
+            if len(split_contentes) < tokens:
+                continue
+            else:
+                line['contents'] = (' ').join(split_contentes[0:tokens-1])
+                print(line['contents'])
             break
     
     
