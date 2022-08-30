@@ -1,5 +1,6 @@
 from prod_defs import *
 import sys
+import jsonlines
 
 def absolute_prod(tokens, model):
     print("calling with %d tokens" % (tokens,))
@@ -12,7 +13,10 @@ def absolute_prod(tokens, model):
     
     print(inpath)
     
-    
+    with jsonlines.open(inpath, 'r') as infile:
+        for line in infile:
+            print(line)
+            break
     
     
     
