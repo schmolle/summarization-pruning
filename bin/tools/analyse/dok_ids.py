@@ -1,5 +1,5 @@
 import jsonlines
-
+import os
 
 BASE_PATH = r'/home/jschmolzi/anserini/collections/qrels'
 long = os.path.join(BASE_PATH, 'longformer10_qrels_base.json')
