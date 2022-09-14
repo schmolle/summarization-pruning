@@ -19,7 +19,7 @@ with jsonlines.open(base, 'r') as f_base, \
         id_pegasus = line_pegasus['id']
         id_long = line_long['id']
         
-        if id_base == id_bart & id_base == id_pegasus & id_base == id_long:
+        if id_base == id_bart and id_base == id_pegasus and id_base == id_long:
             counter = counter + 1
         else:
             print("Mistake in line", counter)
