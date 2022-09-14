@@ -23,5 +23,5 @@ with jsonlines.open(base, 'r') as f_base, \
             counter = counter + 1
         else:
             print("Mistake in line", counter)
-    
+    print(counter, "lines are the same")
     
