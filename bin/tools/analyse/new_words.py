@@ -1,5 +1,6 @@
 import jsonlines
 import os
+import re
 
 BASE_PATH = r'/home/jschmolzi/anserini/collections/qrels'
 full_len = 51465
@@ -24,11 +25,23 @@ with jsonlines.open(base, 'r') as f_base, \
         new_words_bart = 0
         new_words_long = 0
         new_words_pegasus = 0
+        
+        base = re.sub('[^a-zA-Z0-9 \n\.]', '', base)
         base = line_base['contents'].split()
+        
+        print(bart)
+        bart = re.sub('[^a-zA-Z0-9 \n\.]', '', bart)
+        print(bart)
         bart = line_bart['contents'].split()
+        print(bart)
+        break
+        pegasus = re.sub('[^a-zA-Z0-9 \n\.]', '', pegasus)
         pegasus = line_pegasus['contents'].split()
+        
+        long = re.sub('[^a-zA-Z0-9 \n\.]', '', long)
         long = line_long['contents'].split()
         
+        break
         for word in pegasus:
             if word not in base:
                 new_words_pegasus = new_words_pegasus + 1
