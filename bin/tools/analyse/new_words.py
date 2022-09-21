@@ -29,10 +29,11 @@ with jsonlines.open(base, 'r') as f_base, \
         base = re.sub('[^a-zA-Z0-9 \n\.]', '', base)
         base = line_base['contents'].split()
         
+        bart = line_bart['contents']
         print(bart)
         bart = re.sub('[^a-zA-Z0-9 \n\.]', '', bart)
         print(bart)
-        bart = line_bart['contents'].split()
+        bart = bart.split()
         print(bart)
         break
         pegasus = re.sub('[^a-zA-Z0-9 \n\.]', '', pegasus)
