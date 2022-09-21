@@ -33,9 +33,9 @@ with jsonlines.open(bart, 'r') as f_bart,  \
         pegasus = line_pegasus['contents'].split()
         long = line_long['contents'].split()
         
-        arr_len_bart.append[len(bart)]
-        arr_len_pegasus.append[len(pegasus)]
-        arr_len_long.append[len(long)]
+        arr_len_bart.append(len(bart))
+        arr_len_pegasus.append(len(pegasus))
+        arr_len_long.append(len(long))
     
     
     print("counter_bart", len(arr_len_bart))
