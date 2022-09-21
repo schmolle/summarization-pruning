@@ -32,9 +32,6 @@ with jsonlines.open(base, 'r') as f_base, \
         for word in pegasus:
             if word not in base:
                 new_words_pegasus = new_words_pegasus + 1
-                print(word)
-                print(pegasus)
-                print(base)  
         if new_words_pegasus > 0:
             counter_pegasus = counter_pegasus + 1
             arr_new_words_pegasus.append(new_words_pegasus)
