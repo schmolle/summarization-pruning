@@ -9,7 +9,7 @@ bart = os.path.join(BASE_PATH, 'bart10_qrels_base.json')
 pegasus = os.path.join(BASE_PATH, 'Pegasus10_qrels_base.json')
 base = os.path.join(BASE_PATH, '10_relevant.json')
 
-filter_regex = '[^a-zA-Z0-9 \n\.]'
+filter_regex = '[^a-zA-Z0-9 \n]'
 
 counter_bart = 0
 counter_long = 0
