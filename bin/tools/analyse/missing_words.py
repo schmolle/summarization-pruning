@@ -24,10 +24,6 @@ base = os.path.join(BASE_PATH, '10_relevant.json')
 
 filter_regex = '[^a-zA-Z0-9 \n]'
 
-counter_bart = 0
-counter_long = 0
-counter_pegasus = 0
-
 arr_new_words_bart = []
 arr_new_words_long = []
 arr_new_words_pegasus = []
@@ -78,19 +74,22 @@ with jsonlines.open(base, 'r') as f_base, \
         for word in base:
             if word not in bart:
                 bart_counter = bart_counter + 1
-                arr_missing_words_bart.appen(bart_counter)
+            arr_missing_words_bart.appen(bart_counter)
             
             if word not in pegasus:
                 pegasus_counter = pegasus_counter + 1
-                arr_missing_words_pegasus.appen(pegasus_counter)
+            arr_missing_words_pegasus.appen(pegasus_counter)
             
             if word not in long:
                 long_counter = long_counter + 1
-                arr_missing_words_long.appen(long_counter)
+            arr_missing_words_long.appen(long_counter)
     
-    print("counter_bart", counter_bart)
-    print("counter_pegasus", counter_pegasus)
-    print("counter_long", counter_long)
+    print("percentages")
     overview(arr_new_words_bart, "bart")
     overview(arr_new_words_pegasus, "pegasus")
     overview(arr_new_words_long, "long")
+    
+    print("missing words")
+    overview(arr_missing_words_bart, "bart")
+    overview(arr_missing_words_pegasus, "pegasus")
+    overview(arr_missing_words_long, "long")
