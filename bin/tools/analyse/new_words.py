@@ -2,6 +2,19 @@ import jsonlines
 import os
 import re
 
+
+def overview(arr, name):
+    min = np.min(arr)
+    max = np.max(arr)
+    mean = np.mean(arr)
+    avg = np.average(arr)
+    print("overview %s" % (name,))
+    print("\tmin: %s" % (min,))
+    print("\tmax: %s" % (max,))
+    print("\tmean: %s" % (mean,))
+    print("\tavg: %s" % (avg,))
+    
+    
 BASE_PATH = r'/home/jschmolzi/anserini/collections/qrels'
 full_len = 51465
 long = os.path.join(BASE_PATH, 'longformer10_qrels_base.json')
@@ -70,3 +83,6 @@ with jsonlines.open(base, 'r') as f_base, \
     print("counter_bart", counter_bart)
     print("counter_pegasus", counter_pegasus)
     print("counter_long", counter_long)
+    overview(arr_new_words_bart, "bart")
+    overview(arr_new_words_pegasus, "pegasus")
+    overview(arr_new_words_long, "long")
