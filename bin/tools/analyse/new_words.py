@@ -9,6 +9,8 @@ bart = os.path.join(BASE_PATH, 'bart10_qrels_base.json')
 pegasus = os.path.join(BASE_PATH, 'Pegasus10_qrels_base.json')
 base = os.path.join(BASE_PATH, '10_relevant.json')
 
+filter_regex = '[^a-zA-Z0-9 \n\.]'
+
 counter_bart = 0
 counter_long = 0
 counter_pegasus = 0
@@ -26,23 +28,23 @@ with jsonlines.open(base, 'r') as f_base, \
         new_words_long = 0
         new_words_pegasus = 0
         
-        base = re.sub('[^a-zA-Z0-9 \n\.]', '', base)
-        base = line_base['contents'].split()
+        base = line_base['contents']
+        base = re.sub(filter_regex, '', base)
+        base = base.split()
         
         bart = line_bart['contents']
-        print(bart)
-        bart = re.sub('[^a-zA-Z0-9 \n\.]', '', bart)
-        print(bart)
+        bart = re.sub(filter_regex, '', bart)
         bart = bart.split()
-        print(bart)
-        break
-        pegasus = re.sub('[^a-zA-Z0-9 \n\.]', '', pegasus)
-        pegasus = line_pegasus['contents'].split()
         
-        long = re.sub('[^a-zA-Z0-9 \n\.]', '', long)
-        long = line_long['contents'].split()
+        pegasus = line_pegasus['contents']
+        pegasus = re.sub(filter_regex, '', pegasus)
+        pegasus = pegasus.split()
         
-        break
+        
+        long = line_long['contents']
+        long = re.sub(filter_regex, '', long)
+        long = long.split()
+        
         for word in pegasus:
             if word not in base:
                 new_words_pegasus = new_words_pegasus + 1
