@@ -60,7 +60,7 @@ with jsonlines.open(base, 'r') as f_base, \
         
         base_length = len(base)
         bart_length = len(bart)
-        pegasus = len(pegasus)
+        pegasus_length = len(pegasus)
         long_length = len(long)
         
         arr_new_words_bart.append(bart_length/base_length)
