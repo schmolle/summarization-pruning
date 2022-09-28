@@ -63,9 +63,10 @@ with jsonlines.open(base, 'r') as f_base, \
         pegasus_length = len(pegasus)
         long_length = len(long)
         
-        arr_new_words_bart.append(bart_length/base_length)
-        arr_new_words_pegasus.append(pegasus_length/base_length)
-        arr_new_words_long.append(long_length/base_length)
+        if base_length > 0:
+            arr_new_words_bart.append(bart_length/base_length)
+            arr_new_words_pegasus.append(pegasus_length/base_length)
+            arr_new_words_long.append(long_length/base_length)
         
         bart_counter = 0
         pegasus_counter = 0
