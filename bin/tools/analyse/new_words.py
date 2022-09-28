@@ -77,7 +77,7 @@ with jsonlines.open(base, 'r') as f_base, \
                 new_words_long = new_words_long + 1  
         if new_words_long > 0:
             counter_long = counter_long + 1
-            arr_new_words_long.append(counter_long)
+            arr_new_words_long.append(new_words_long)
     
     
     print("counter_bart", counter_bart)
