@@ -74,15 +74,15 @@ with jsonlines.open(base, 'r') as f_base, \
         for word in base:
             if word not in bart:
                 bart_counter = bart_counter + 1
-            arr_missing_words_bart.appen(bart_counter)
+            arr_missing_words_bart.append(bart_counter)
             
             if word not in pegasus:
                 pegasus_counter = pegasus_counter + 1
-            arr_missing_words_pegasus.appen(pegasus_counter)
+            arr_missing_words_pegasus.append(pegasus_counter)
             
             if word not in long:
                 long_counter = long_counter + 1
-            arr_missing_words_long.appen(long_counter)
+            arr_missing_words_long.append(long_counter)
     
     print("percentages")
     overview(arr_new_words_bart, "bart")
