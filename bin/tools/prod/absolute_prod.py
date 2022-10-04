@@ -14,8 +14,10 @@ def absolute_prod(tokens, model):
     
     print("infile:", inpath)
     outpath = destination_path
+    outpath2 = destination_path_space
     print("outfile:", outpath)
     outfile = open(outpath, 'w', encoding='utf-8')
+    outfile2 = open(outpath2, 'w', encoding='utf-8')
     with jsonlines.open(inpath, 'r') as infile:
         for line in infile:
             split_contentes = line['contents'].split()
@@ -24,8 +26,10 @@ def absolute_prod(tokens, model):
             else:
                 line['contents'] = (' ').join(split_contentes[0:tokens])
                 outfile.write(json.dumps(line) + '\n')
+                outfile2.write(json.dumps(line) + '\n')
             break
     outfile.close()
+    outfile2.close()
     
     
 if __name__ == "__main__":
