@@ -16,6 +16,7 @@ def absolute_prod(tokens, model):
     outpath = destination_path
     outpath2 = destination_path_space
     print("outfile:", outpath)
+    print("outfile:", outpath2)
     outfile = open(outpath, 'w', encoding='utf-8')
     outfile2 = open(outpath2, 'w', encoding='utf-8')
     with jsonlines.open(inpath, 'r') as infile:
