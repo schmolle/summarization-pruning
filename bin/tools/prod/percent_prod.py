@@ -2,6 +2,8 @@ from prod_defs import *
 import sys
 import jsonlines
 import json
+import math
+
 
 def absolute_prod(tokens, model):
     print("calling with %d tokens" % (tokens,))
