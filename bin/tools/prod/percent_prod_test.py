@@ -27,12 +27,12 @@ def absolute_prod(tokens, model):
         for line in infile:
             split_contentes = line['contents'].split()
             length_contents = len(split_contentes)
-            tokens = math.ceil(length_contents * tokens)
-            print("cur line b4 %d now %d" % (length_contents, tokens))
-            if tokens < 5:
+            cur_tokens = math.ceil(length_contents * tokens)
+            print("cur line b4 %d now %d" % (length_contents, cur_tokens))
+            if cur_tokens < 5:
                 line['contents'] = (' ').join(split_contentes)
             else:
-                line['contents'] = (' ').join(split_contentes[0:tokens])
+                line['contents'] = (' ').join(split_contentes[0:cur_tokens])
             outfile.write(json.dumps(line) + '\n')
             outfile2.write(json.dumps(line) + '\n')
     outfile.close()
