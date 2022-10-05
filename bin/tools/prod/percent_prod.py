@@ -19,18 +19,21 @@ def absolute_prod(tokens, model):
     outpath = destination_path
     print("outfile:", outpath)
     outfile = open(outpath, 'w', encoding='utf-8')
+    outfile2 = open(outpath2, 'w', encoding='utf-8')
     with jsonlines.open(inpath, 'r') as infile:
         for line in infile:
             split_contentes = line['contents'].split()
-            tokens = math.ceil(max_tokens * tokens)
-            if len(split_contentes) < tokens:
-                continue
+            tokens = math.ceil(len(split_contentes) * tokens)
+            if tokens < 5:
+                line['contents'] = (' ').join(split_contentes)
             else:
                 line['contents'] = (' ').join(split_contentes[0:tokens])
-                outfile.write(json.dumps(line) + '\n')
+            outfile.write(json.dumps(line) + '\n')
+            outfile2.write(json.dumps(line) + '\n')
             break
     outfile.close()
-    
+    outfile2.close()
+
     
 if __name__ == "__main__":
     usage_string = 'Pass 2 Arguments: NrOfTokens[1,512] Model["bart", "pegasus", "longformer"]'
