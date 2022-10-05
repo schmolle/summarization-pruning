@@ -6,7 +6,7 @@ import math
 
 
 def absolute_prod(tokens, model):
-    print("calling with %d tokens" % (tokens,))
+    print("calling with %f tokens" % (tokens,))
     if model == 'bart':
         inpath = bart_path
         max_tokens = 512
@@ -39,7 +39,7 @@ def absolute_prod(tokens, model):
 
     
 if __name__ == "__main__":
-    usage_string = 'Pass 2 Arguments: NrOfTokens[1,512] Model["bart", "pegasus", "longformer"]'
+    usage_string = 'Pass 2 Arguments: NrOfTokens[0.1, 0.7] Model["bart", "pegasus", "longformer"]'
     if len(sys.argv) != 3:
         print(usage_string)
     try:
