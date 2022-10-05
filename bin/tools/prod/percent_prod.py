@@ -27,7 +27,7 @@ def absolute_prod(tokens, model):
         for line in infile:
             split_contentes = line['contents'].split()
             cur_tokens = math.ceil(len(split_contentes) * tokens)
-            if tokens < 5:
+            if cur_tokens < 5:
                 line['contents'] = (' ').join(split_contentes)
             else:
                 line['contents'] = (' ').join(split_contentes[0:cur_tokens])
