@@ -23,6 +23,8 @@ for f_name in [bart_path, long_path, pegasus_path]:
             current_split = line_current.split()
             ndcg_base = float(base_split[2])
             ndcg_current = float(current_split[2])
+            if base_split[1] != current_split[1]:
+                print("ERROR")
             if (counter % 2) == 0:
                 if ndcg_base == ndcg_current:
                     same_5.append(base_split[1])
