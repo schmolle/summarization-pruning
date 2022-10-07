@@ -2,9 +2,9 @@ import jsonlines
 import os
 
 base_path = r'/home/jschmolzi/anserini/runs/eval/base.txt'
-long_path = os.path.join(BASE_PATH, '/home/jschmolzi/anserini/runs/eval/longformer.txt')
-bart_path = os.path.join(BASE_PATH, '/home/jschmolzi/anserini/runs/eval/bart.txt')
-pegasus_path = os.path.join(BASE_PATH, '/home/jschmolzi/anserini/runs/eval/pegasus.txt')
+long_path = '/home/jschmolzi/anserini/runs/eval/longformer.txt'
+bart_path = '/home/jschmolzi/anserini/runs/eval/bart.txt'
+pegasus_path = '/home/jschmolzi/anserini/runs/eval/pegasus.txt'
 
 for f_name in [bart_path, long_path, pegasus_path]:
     counter = 0
