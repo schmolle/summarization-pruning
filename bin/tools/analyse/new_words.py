@@ -63,26 +63,26 @@ with jsonlines.open(base, 'r') as f_base, \
                 new_words_pegasus = new_words_pegasus + 1
         if new_words_pegasus > 0:
             counter_pegasus = counter_pegasus + 1
-            arr_new_words_pegasus.append(new_words_pegasus)
+        arr_new_words_pegasus.append(new_words_pegasus)
                 
         for word in bart:
             if word not in base:
                 new_words_bart = new_words_bart + 1  
         if new_words_bart > 0:
             counter_bart = counter_bart + 1
-            arr_new_words_bart.append(new_words_bart)
+        arr_new_words_bart.append(new_words_bart)
                 
         for word in long:
             if word not in base:
                 new_words_long = new_words_long + 1  
         if new_words_long > 0:
             counter_long = counter_long + 1
-            arr_new_words_long.append(new_words_long)
+        arr_new_words_long.append(new_words_long)
     
     
-    print("counter_bart", counter_bart)
-    print("counter_pegasus", counter_pegasus)
-    print("counter_long", counter_long)
+    print("counter_bart", counter_bart/full_len)
+    print("counter_pegasus", counter_pegasus/full_len)
+    print("counter_long", counter_long/full_len)
     overview(arr_new_words_bart, "bart")
     overview(arr_new_words_pegasus, "pegasus")
     overview(arr_new_words_long, "long")
