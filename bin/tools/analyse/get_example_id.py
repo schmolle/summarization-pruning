@@ -83,13 +83,3 @@ with jsonlines.open(base, 'r') as f_base, \
                 arr_missing_words_long.append(long_counter)
             if (bart_counter > 0 or pegasus_counter > 0 or long_counter > 0):
                 print("doc_id %s: bart %d, pega %d, long %d ----- full %d" % (contents['id'], bart_counter, pegasus_counter, long_counter, base_length))
-        
-    print("percentage")
-    overview(arr_new_words_bart, "bart")
-    overview(arr_new_words_pegasus, "pegasus")
-    overview(arr_new_words_long, "long")
-    
-    print("missing words")
-    overview(arr_missing_words_bart, "bart")
-    overview(arr_missing_words_pegasus, "pegasus")
-    overview(arr_missing_words_long, "long")
