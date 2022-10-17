@@ -88,7 +88,7 @@ with jsonlines.open(base, 'r') as f_base, \
         if (bart_counter == 0 or pegasus_counter == bart_length or long_counter == 0):
             print("missing: bart %d, pega %d, long %d ----- now %d" % (bart_counter, pegasus_counter, long_counter, base_length))
         
-    print("percentages")
+    print("percentage")
     overview(arr_new_words_bart, "bart")
     overview(arr_new_words_pegasus, "pegasus")
     overview(arr_new_words_long, "long")
