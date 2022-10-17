@@ -8,13 +8,13 @@ base_string = ''
 bart_string = ''
 for word in base_split:
     if word not in bart_split:
-        base_string = base_string + ' \textcolor{red}{' + word + '}'
+        base_string = base_string + ' \\textcolor{red}{' + word + '}'
     else:
         base_string = base_string + ' ' + word
         
 for word in bart_split:
     if word not in base_split:
-        bart_string = bart_string + ' \textcolor{green}{' + word + '}'
+        bart_string = bart_string + ' \\textcolor{green}{' + word + '}'
     else:
         bart_string = bart_string + ' ' + word
         
