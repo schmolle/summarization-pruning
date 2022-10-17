@@ -43,9 +43,9 @@ with jsonlines.open(base, 'r') as f_base, \
             pegasus = line_pegasus['contents']
      
             long = line_long['contents']
-            print(base)
-            print(bart)
-            print(pegasus)
-            print(long)
+            print("base: " + base)
+            print("bart: " + bart)
+            print("pegasus: " + pegasus)
+            print("long: " + long)
             
 
