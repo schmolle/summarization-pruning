@@ -69,17 +69,16 @@ with jsonlines.open(base, 'r') as f_base, \
             pegasus_counter = 0
             long_counter = 0
             
-            for word in base:
-                if word not in bart:
+            for word in bart:
+                if word not in base:
                     bart_counter = bart_counter + 1
-                arr_missing_words_bart.append(bart_counter)
+                      
+            for word in pegasus:
+                if word not in base:
+                    pegasus_counter = pegasus_counter + 1  
                 
-                if word not in pegasus:
-                    pegasus_counter = pegasus_counter + 1
-                arr_missing_words_pegasus.append(pegasus_counter)
-                
-                if word not in long:
-                    long_counter = long_counter + 1
-                arr_missing_words_long.append(long_counter)
+            for word in long:
+                if word not in base:
+                    long_counter = long_counter + 1  
             if (bart_counter > 0 or pegasus_counter > 0 or long_counter > 0):
                 print("doc_id %s: bart %d, pega %d, long %d ----- full %d" % (line_base['id'], bart_counter, pegasus_counter, long_counter, base_length))
