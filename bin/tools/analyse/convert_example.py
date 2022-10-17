@@ -8,13 +8,13 @@ base_string = ''
 bart_string = ''
 for word in base_split:
     if word not in bart_split:
-        base_string = base_string + ' _' + word + '_'
+        base_string = base_string + ' _' + word
     else:
         base_string = base_string + ' ' + word
         
 for word in bart_split:
     if word not in base_split:
-        bart_string = bart_string + ' _' + word + '_'
+        bart_string = bart_string + ' _' + word
     else:
         bart_string = bart_string + ' ' + word
         
