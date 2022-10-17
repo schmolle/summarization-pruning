@@ -82,4 +82,4 @@ with jsonlines.open(base, 'r') as f_base, \
                     long_counter = long_counter + 1
                 arr_missing_words_long.append(long_counter)
             if (bart_counter > 0 or pegasus_counter > 0 or long_counter > 0):
-                print("doc_id %s: bart %d, pega %d, long %d ----- full %d" % (contents['id'], bart_counter, pegasus_counter, long_counter, base_length))
+                print("doc_id %s: bart %d, pega %d, long %d ----- full %d" % (line_base['id'], bart_counter, pegasus_counter, long_counter, base_length))
