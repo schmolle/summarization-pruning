@@ -63,7 +63,7 @@ with jsonlines.open(base, 'r') as f_base, \
         pegasus_length = len(pegasus)
         long_length = len(long)
         
-        if base_length < 50:       
+        if 50 < base_length < 1000:       
         
             bart_counter = 0
             pegasus_counter = 0
