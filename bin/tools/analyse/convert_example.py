@@ -17,3 +17,6 @@ for word in bart_split:
         bart_string = bart_string + ' _' + word + '_'
     else:
         bart_string = bart_string + ' ' + word
+        
+print(base_string)
+print(bart_string)
