@@ -85,7 +85,7 @@ with jsonlines.open(base, 'r') as f_base, \
             if word not in long:
                 long_counter = long_counter + 1
             arr_missing_words_long.append(long_counter)
-        if (bart_counter == 0 or pegasus_counter == bart_length or long_counter == 0):
+        if (bart_counter == 0 or pegasus_counter == 0 or long_counter == 0):
             print("missing: bart %d, pega %d, long %d ----- now %d" % (bart_counter, pegasus_counter, long_counter, base_length))
         
     print("percentage")
