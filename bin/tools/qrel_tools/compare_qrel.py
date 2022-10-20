@@ -19,12 +19,12 @@ def compare_base_bart(id):
             base_split = line_base.split()
             base_id = base_split[0]
             base_rank = int(base_split[3])
-            base_dokid = base_split[4]
+            base_dokid = base_split[2]
             
             bart_split = line_bart.split()
             bart_id = bart_split[0]
             bart_rank = int(bart_split[3])
-            bart_dokid = bart_split[4]
+            bart_dokid = bart_split[2]
             
             if base_id == id and base_rank < 11:
                 print("base %d: %s --- bart %d: %s" % (base_rank, base_dokid, bart_rank, bart_dokid))
