@@ -12,8 +12,8 @@ def get_qrel_from_id(id):
                 print("%s: %s" % (f_id, ' '.join(f_split[1:])))
 
 def compare_base_bart(id):
-    base_path = r'~/anserini/runs/run.base.txt'
-    bart_path = '~/anserini/runs/run.bart.txt'
+    base_path = r'/home/jschmolzi/anserini/runs/run.base.txt'
+    bart_path = '/home/jschmolzi/anserini/runs/run.bart.txt'
     for line_base, line_bart in zip(base_path, bart_path):
         print(line_base)
         base_split = line_base.split()
