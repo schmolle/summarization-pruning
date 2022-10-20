@@ -9,7 +9,7 @@ def get_qrel_from_id(id):
             f_split = line.split()
             f_id = int(f_split[0])
             if id == f_id:
-                print("%d: %s" % (f_id, ' '.join(f_split[1,])))
+                print("%d: %s" % (f_id, ' '.join(f_split[1:])))
     
 if __name__ == '__main__':
     relevant_qrels = read_qrels()
