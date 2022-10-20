@@ -27,7 +27,7 @@ def compare_base_bart(id):
             bart_dokid = bart_split[4]
             
             if base_id == id and base_rank < 11:
-                print("base %d: %s --- bart %d: %s" % (base_id, base_dokid, bart_id, bart_dokid))
+                print("base %d: %s --- bart %d: %s" % (base_rank, base_dokid, bart_rank, bart_dokid))
         
         
 def get_qrel_info(id):
