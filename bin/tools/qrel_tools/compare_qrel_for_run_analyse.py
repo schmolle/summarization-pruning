@@ -35,9 +35,9 @@ def compare_base_bart(id):
                 if bart_dokid in relevant_qrels:
                     counter_bart = counter_bart + 1
             
-            if counter_bart > counter_base:
-                get_qrel_from_id(id)
-                print("base %d: %s --- bart %d: %s" % (base_rank, base_dokid, bart_rank, bart_dokid))
+        if counter_bart > counter_base:
+            get_qrel_from_id(id)
+            print("base %d: %s --- bart %d: %s" % (base_rank, base_dokid, bart_rank, bart_dokid))
         
         
 def get_qrel_info(id):
