@@ -6,7 +6,7 @@ long_path = '/home/jschmolzi/anserini/runs/eval/longformer.txt'
 bart_path = '/home/jschmolzi/anserini/runs/eval/bart.txt'
 pegasus_path = '/home/jschmolzi/anserini/runs/eval/pegasus.txt'
 
-for f_name in [bart_path, long_path, pegasus_path]:
+for f_name in [bart_path]: #[bart_path, long_path, pegasus_path]
     counter = 0
     worse_5 = []
     same_5 = []
@@ -57,4 +57,9 @@ for f_name in [bart_path, long_path, pegasus_path]:
     print("same @10: %d" % (len(same_10)))
     print("worse @10: %d" % (len(worse_10)))
     print("now zero @5: %d" % (len(now_zero_10)))
+    
+    print(better10[0:50])
+    print(same_10[0:50])
+    print(worse_10[0:50])
+    print(now_zero_10[0:50])
     
