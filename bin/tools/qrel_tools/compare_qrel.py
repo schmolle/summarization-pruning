@@ -17,5 +17,5 @@ def compare_base_bart():
     
 if __name__ == '__main__':
     relevant_qrels = read_qrels()
-    get_qrel_from_id(sys.argv[1])
+    get_qrel_from_id(1000000)
     
