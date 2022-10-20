@@ -59,6 +59,6 @@ for f_name in [bart_path]: #[bart_path, long_path, pegasus_path]
     print("worse @10: %d" % (len(worse_10)))
     print("now zero @5: %d" % (len(now_zero_10)))
     
-    for id in worse_10:
+    for id in now_zero_10:
         compare_base_bart(id)
     

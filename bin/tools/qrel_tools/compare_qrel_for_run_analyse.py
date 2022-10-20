@@ -35,7 +35,7 @@ def compare_base_bart(id):
                 if bart_dokid in relevant_qrels:
                     counter_bart = counter_bart + 1
             
-        if counter_bart < counter_base:
+        if counter_bart == 0 and counter_base > 0:
             get_qrel_from_id(id)
             print("base %d: %s --- bart %d: %s" % (base_rank, base_dokid, bart_rank, bart_dokid))
         
