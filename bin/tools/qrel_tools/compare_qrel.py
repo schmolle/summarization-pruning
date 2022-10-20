@@ -7,7 +7,7 @@ def get_qrel_from_id(id):
     with open(path, 'r') as f:
         for line in f:
             f_split = line.split()
-            f_id = int(f_split[0])
+            f_id = f_split[0]
             if id == f_id:
                 print("%d: %s" % (f_id, ' '.join(f_split[1:])))
 
@@ -17,5 +17,6 @@ def compare_base_bart():
     
 if __name__ == '__main__':
     relevant_qrels = read_qrels()
-    get_qrel_from_id(1000000)
+    get_qrel_from_id('1000000')
+    get_qrel_from_id(sys.argv[1])
     
