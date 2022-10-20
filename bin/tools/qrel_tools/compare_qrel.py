@@ -9,7 +9,7 @@ def get_qrel_from_id(id):
             f_split = line.split()
             f_id = f_split[0]
             if id == f_id:
-                print("%d: %s" % (f_id, ' '.join(f_split[1:])))
+                print("%s: %s" % (f_id, ' '.join(f_split[1:])))
 
 def compare_base_bart():
     base_path = r'/home/jschmolzi/anserini/runs/eval/base.txt'
