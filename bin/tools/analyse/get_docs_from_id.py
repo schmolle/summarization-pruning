@@ -37,15 +37,28 @@ with jsonlines.open(base, 'r') as f_base, \
          
         if id == line_id:
             base = line_base['contents']
+            pegasusbase_len = len(base.split()) 
     
             bart = line_bart['contents']
+            bart_len = len(bart.split())
     
             pegasus = line_pegasus['contents']
-     
+            pegasus_len = len(pegasus.split())
+            
             long = line_long['contents']
-            print("base: " + base)
-            print("bart: " + bart)
-            print("pegasus: " + pegasus)
-            print("long: " + long)
+            long_len = len(long.split())
+            
+            print("base: ")
+            print(base)
+            print(base_len)
+            print("bart: ")
+            print(bart)
+            print(bart_len)
+            print("pegasus: ")
+            print(pegasus)
+            print(pegasus_len)
+            print("long: ")
+            print(long)
+            print(long_len)
             
 
