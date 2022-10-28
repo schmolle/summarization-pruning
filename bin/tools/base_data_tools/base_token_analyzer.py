@@ -1,4 +1,4 @@
-#encoding UTF-8
+# -*- coding: utf-8 -*-
 import sys
 from datasets import load_dataset
 import pickle
