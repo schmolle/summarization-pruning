@@ -78,10 +78,11 @@ def create_overview(model_name):
             longer_20000 = get_number_of_occurences(arr, 20000)
             
             plt.hist(arr, bins='auto');
-            plt.title('%s tokens of %d relevant Docs' % (model_name, len(arr)))
+            # plt.title('%s tokens of %d relevant Docs' % (model_name, len(arr)))
             plt.xlabel('Tokens')
+            plt.xlabel('#Dokumente')
             
-            plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/%s_plot.png' % (model_name,))
+            plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/%s_plot.eps' % (model_name,), format='eps')
             print("min: %s" % (min,))
             print("max: %s" % (max,))
             print("mean: %s" % (mean,))
@@ -106,7 +107,7 @@ if __name__ == "__main__":
         else:
             print("Usage: 1=longformer, 2=bart, 3=pegasus")
     else:
-        create_overview('base_bart')
-        create_overview('base_pegasus')
-        create_overview('base_longformer')
+        #create_overview('base_bart')
+        #create_overview('base_pegasus')
+        #create_overview('base_longformer')
         create_overview('base_split')
