@@ -79,7 +79,7 @@ def create_overview(model_name):
             
             plt.hist(arr, bins='auto');
             # plt.title('%s tokens of %d relevant Docs' % (model_name, len(arr)))
-            plt.xlabel('Tokens')
+            plt.xlabel('Wörter')
             plt.ylabel('#Dokumente')
             
             plt.savefig('/home/jschmolzi/summarization-pruning/data/plots/%s_plot.eps' % (model_name,), format='eps')
